@@ -3,7 +3,7 @@
   "defaultPriorityMin": 10,
   "defaultPriorityMax": 50,
   "queueFolderPath": "Inbox",
-  "queueFileName": "Inbox.md",
+  "queueFileName": "Writing.md",
   "defaultQueueType": "afactor",
   "skipAddNoteWindow": false,
   "autoAddNewNotes": false,

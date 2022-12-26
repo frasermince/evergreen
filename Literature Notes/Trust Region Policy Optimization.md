@@ -37,4 +37,9 @@ This theoretical update is not the easiest to work with so we do a [[Taylor Expa
 
 This can also be analytically solved by [[Lagrangian Duality]]
 
+
+*Reading Path - 
+*  https://spinningup.openai.com/en/latest/algorithms/trpo.html
+	* https://stanford.edu/~boyd/cvxbook/ - chapters two through five - [[Convex Optimization]]
+
 #reinforcement-learning

@@ -1,0 +1,11 @@
+---
+scheduler: "afactor"
+afactor: 2
+interval: 1
+---
+| Link                             | Priority | Notes | Interval |   Next Rep |
+| :------------------------------- | -------: | :---- | -------: | ---------: |
+| [[Advantage Function]]           |       10 |       |        4 | 2022-12-24 |
+| [[Backtracking Line Search]]     |       28 |       |        1 | 1969-12-28 |
+| [[Lagrangian Duality]]           |       29 |       |        1 | 1969-12-30 |
+| [[Conjugate Gradient Algorithm]] |       15 |       |        1 | 1969-12-31 |

@@ -8,32 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a31b0c2b107ad073",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Literature Notes/Trust Region Policy Optimization.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9f5a7772db94739d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Literature Notes/Trust Region Policy Optimization.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "612ee1dfbe935c25",
             "type": "leaf",
             "state": {
@@ -47,77 +21,12 @@
             }
           },
           {
-            "id": "25ad7a33c86e5fc8",
+            "id": "bca9a18e9adf11a8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Literature Notes/Trust Region Policy Optimization.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "de5bcb502bcec33f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Literature Notes/Trust Region Policy Optimization.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "42fef3dd55ddd932",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2022-12-23.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a7b6d302c6ec822d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Concepts/Conjugate Gradient Algorithm.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "8159bd36ac0290df",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Concepts/Backtracking Line Search.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "407c4257a23efe0b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2022-12-24.md",
+                "file": "Literature Notes/Convex Optimization.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -125,7 +34,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -142,10 +51,8 @@
             "id": "b41e4fa8654cbdad",
             "type": "leaf",
             "state": {
-              "type": "file-explorer",
-              "state": {
-                "sortOrder": "alphabetical"
-              }
+              "type": "pocket_item_list",
+              "state": {}
             }
           },
           {
@@ -154,7 +61,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#reading-path",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -170,12 +77,23 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "13d53fc83a26a7d7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 456.5
   },
   "right": {
     "id": "c246b673a417d7cc",
@@ -191,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2022-12-24.md",
+                "file": "Literature Notes/Convex Optimization.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -208,7 +126,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2022-12-24.md",
+                "file": "Literature Notes/Convex Optimization.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -231,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2022-12-24.md"
+                "file": "Literature Notes/Convex Optimization.md"
               }
             }
           },
@@ -260,17 +178,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "407c4257a23efe0b",
+  "active": "bca9a18e9adf11a8",
   "lastOpenFiles": [
-    "Literature Notes/Untitled.canvas",
+    "Literature Notes/Convex.md",
     "Literature Notes/Trust Region Policy Optimization.md",
+    "Inbox/Writing.md",
+    "Inbox/Reading Paths.md",
     "Literature Notes/Designing Machine Learning Systems Index.md",
-    "Concepts/Backtracking Line Search.md",
-    "Concepts/Advantage Function.md",
+    "Literature Notes/Convex Optimization.md",
+    "2022-12-25.md",
+    "Pocket/Convex Optimization – Boyd and Vandenberghe.md",
     "Overview.md",
-    "2022-12-23.md",
-    "2022-12-24.md",
-    "Inbox/Inbox.md",
-    "Concepts/Lagrangian Duality.md"
+    "Concepts/Affine Sets.md"
   ]
 }

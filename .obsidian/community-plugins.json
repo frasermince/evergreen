@@ -3,5 +3,8 @@
   "obsidian-latex-suite",
   "obsidian-todoist-link",
   "obsidian-incremental-writing",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-pocket",
+  "obsidian-copy-block-link",
+  "dataview"
 ]
