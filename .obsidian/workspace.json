@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "612ee1dfbe935c25",
+            "id": "951e98f46c6b108d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Literature Notes/Trust Region Policy Optimization.md",
+                "file": "Literature Notes/Unnatural Instructions Tuning Language Models with (Almost) No Human Labor.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -21,12 +21,25 @@
             }
           },
           {
-            "id": "bca9a18e9adf11a8",
+            "id": "d55c6d257b901904",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Literature Notes/Convex Optimization.md",
+                "file": "2023-01-10.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "08a2964048c6b024",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Output/List of blog articles.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -34,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -109,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Literature Notes/Convex Optimization.md",
+                "file": "Output/List of blog articles.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Literature Notes/Convex Optimization.md",
+                "file": "Output/List of blog articles.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -149,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Literature Notes/Convex Optimization.md"
+                "file": "Output/List of blog articles.md"
               }
             }
           },
@@ -158,6 +171,14 @@
             "type": "leaf",
             "state": {
               "type": "git-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "51775572f32ad63d",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
               "state": {}
             }
           }
@@ -178,17 +199,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bca9a18e9adf11a8",
+  "active": "2c1eaf49fb9c41eb",
   "lastOpenFiles": [
-    "Literature Notes/Convex.md",
-    "Literature Notes/Trust Region Policy Optimization.md",
-    "Inbox/Writing.md",
-    "Inbox/Reading Paths.md",
+    "2023-01-10.md",
+    "Literature Notes/HHH A General Language Assistant as a Library for Alignment.md",
+    "Literature Notes/Unnatural Instructions Tuning Language Models with (Almost) No Human Labor.md",
+    "Literature Notes/NeurIPS 2020 Tutorial on Offline RL.md",
+    "Literature Notes/LLM Memorization.md",
+    "Literature Notes/L4 TRPO and PPO (Foundations of Deep RL Series).md",
+    "Literature Notes/IQL.md",
     "Literature Notes/Designing Machine Learning Systems Index.md",
-    "Literature Notes/Convex Optimization.md",
-    "2022-12-25.md",
-    "Pocket/Convex Optimization – Boyd and Vandenberghe.md",
-    "Overview.md",
-    "Concepts/Affine Sets.md"
+    "Literature Notes/Constitutional AI.md",
+    "Literature Notes/Charlie Snell ILQL, 29.July.2022 Video.md"
   ]
 }

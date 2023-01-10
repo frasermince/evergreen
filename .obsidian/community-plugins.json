@@ -6,5 +6,7 @@
   "obsidian-git",
   "obsidian-pocket",
   "obsidian-copy-block-link",
-  "dataview"
+  "dataview",
+  "calendar",
+  "cm-editor-syntax-highlight-obsidian"
 ]
