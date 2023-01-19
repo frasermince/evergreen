@@ -45,9 +45,61 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "401c7e2e52c6ea23",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Output/DQN.md",
+                "mode": "preview",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "8efaa2cea47f83c3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Literature Notes/Training a Helpful and Harmless Assistant with Reinforcement Learning From Human Feedback.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "78b333f0c8e3be2d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Literature Notes/Training a Helpful and Harmless Assistant with Reinforcement Learning From Human Feedback.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "19c1e727680b6600",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Output/DQN.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -106,7 +158,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 456.5
+    "width": 456.5,
+    "collapsed": true
   },
   "right": {
     "id": "c246b673a417d7cc",
@@ -122,7 +175,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Output/List of blog articles.md",
+                "file": "Output/DQN.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +192,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Output/List of blog articles.md",
+                "file": "Output/DQN.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +215,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Output/List of blog articles.md"
+                "file": "Output/DQN.md"
               }
             }
           },
@@ -199,17 +252,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2c1eaf49fb9c41eb",
+  "active": "19c1e727680b6600",
   "lastOpenFiles": [
-    "2023-01-10.md",
-    "Literature Notes/HHH A General Language Assistant as a Library for Alignment.md",
-    "Literature Notes/Unnatural Instructions Tuning Language Models with (Almost) No Human Labor.md",
+    "Literature Notes/Muesli.md",
+    "Literature Notes/Training a Helpful and Harmless Assistant with Reinforcement Learning From Human Feedback.md",
+    "2023-01-13.md",
     "Literature Notes/NeurIPS 2020 Tutorial on Offline RL.md",
     "Literature Notes/LLM Memorization.md",
-    "Literature Notes/L4 TRPO and PPO (Foundations of Deep RL Series).md",
-    "Literature Notes/IQL.md",
-    "Literature Notes/Designing Machine Learning Systems Index.md",
-    "Literature Notes/Constitutional AI.md",
-    "Literature Notes/Charlie Snell ILQL, 29.July.2022 Video.md"
+    "Concepts/Can We Create a LLM That Knows What It Doesn't Know?.md",
+    "Concepts/Preference Models.md",
+    "Output/DQN.md",
+    "2023-01-10.md",
+    "Output/Intro To Reinforcement Learning.md"
   ]
 }

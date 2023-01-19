@@ -1,5 +1,8 @@
 {
   "accentColor": "",
   "cssTheme": "Things",
-  "baseFontSize": 29
+  "baseFontSize": 29,
+  "enabledCssSnippets": [
+    "codeblock"
+  ]
 }
