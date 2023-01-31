@@ -39,7 +39,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/List of blog articles.md",
+                "file": "Drafts/List of blog articles.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -97,9 +97,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "20a0daa9671a0598",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Literature Notes/Muesli.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -158,8 +171,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 456.5,
-    "collapsed": true
+    "width": 456.5
   },
   "right": {
     "id": "c246b673a417d7cc",
@@ -175,7 +187,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Output/DQN.md",
+                "file": "Literature Notes/Muesli.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -192,7 +204,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Output/DQN.md",
+                "file": "Literature Notes/Muesli.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -215,7 +227,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Output/DQN.md"
+                "file": "Literature Notes/Muesli.md"
               }
             }
           },
@@ -252,17 +264,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "19c1e727680b6600",
+  "active": "2c1eaf49fb9c41eb",
   "lastOpenFiles": [
+    "Output/DQN.md",
+    "Literature Notes/Trust Region Policy Optimization.md",
     "Literature Notes/Muesli.md",
+    "2023-01-23.md",
+    "Concepts/off policy.md",
     "Literature Notes/Training a Helpful and Harmless Assistant with Reinforcement Learning From Human Feedback.md",
     "2023-01-13.md",
     "Literature Notes/NeurIPS 2020 Tutorial on Offline RL.md",
     "Literature Notes/LLM Memorization.md",
-    "Concepts/Can We Create a LLM That Knows What It Doesn't Know?.md",
-    "Concepts/Preference Models.md",
-    "Output/DQN.md",
-    "2023-01-10.md",
-    "Output/Intro To Reinforcement Learning.md"
+    "Concepts/Can We Create a LLM That Knows What It Doesn't Know?.md"
   ]
 }

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@mdx-js/react": "^2.2.1"
+  }
+}

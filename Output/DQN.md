@@ -1,8 +1,11 @@
+---
+category: "post"
+---
 *Introduction to DQN*
 One of the first algorithms I implemented upon starting on my Reinforcement Learning journey is DQN. I want ot walk you through how it works and some of the nuances. This post is going to assume you know the very basics of RL but if not feel free to check out the [OpenAI Spinning up in RL Guide](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html)
 
 *What is DQN*
-DQN or Deep Q Networks is an off policy, model free algorithm that predicts the Q value, or state action value, in order to improve in an environment. The state action value is how valuable a state is given that you take a specific action.
+DQN or Deep Q Networks is an [[off policy]], model free algorithm that predicts the Q value, or state action value, in order to improve in an environment. The state action value is how valuable a state is given that you take a specific action.
 
 *Bellman Equation*
 The action value Bellman equation is as follows
@@ -85,4 +88,4 @@ while True:
 ```
 
 
-These present the biggest pieces involved in DQN. Feel free to checkout out [my code](https://github.com/frasermince/rl-papers/tree/master/dqn) and reach out if you have any thoughts or questions.
+These present the biggest pieces involved in DQN. Feel free to checkout out [my code](https://github.com/frasermince/rl-papers/tree/master/dqn/dqn.py) and reach out if you have any thoughts or questions.
