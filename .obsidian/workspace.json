@@ -110,9 +110,48 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "faacd375be4daa1e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Output/A2C.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "99a50e35ebc6555c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Output/A2C.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b208d4784aa16773",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Output/A2C.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 10
       }
     ],
     "direction": "vertical"
@@ -187,7 +226,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Literature Notes/Muesli.md",
+                "file": "Output/A2C.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -204,7 +243,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Literature Notes/Muesli.md",
+                "file": "Output/A2C.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -227,7 +266,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Literature Notes/Muesli.md"
+                "file": "Output/A2C.md"
               }
             }
           },
@@ -264,17 +303,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2c1eaf49fb9c41eb",
+  "active": "b208d4784aa16773",
   "lastOpenFiles": [
+    "Concepts/On Policy.md",
+    "Output/A2C.md",
+    "Concepts/Off Policy.md",
+    "Literature Notes/Muesli.md",
     "Output/DQN.md",
     "Literature Notes/Trust Region Policy Optimization.md",
-    "Literature Notes/Muesli.md",
     "2023-01-23.md",
-    "Concepts/off policy.md",
     "Literature Notes/Training a Helpful and Harmless Assistant with Reinforcement Learning From Human Feedback.md",
     "2023-01-13.md",
-    "Literature Notes/NeurIPS 2020 Tutorial on Offline RL.md",
-    "Literature Notes/LLM Memorization.md",
-    "Concepts/Can We Create a LLM That Knows What It Doesn't Know?.md"
+    "Literature Notes/NeurIPS 2020 Tutorial on Offline RL.md"
   ]
 }
