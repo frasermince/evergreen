@@ -149,9 +149,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "9ca29d317ffd2d21",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Output/A2C.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 10
+        "currentTab": 11
       }
     ],
     "direction": "vertical"
@@ -303,17 +316,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b208d4784aa16773",
+  "active": "9ca29d317ffd2d21",
   "lastOpenFiles": [
-    "Concepts/On Policy.md",
+    "Output/DQN.md",
     "Output/A2C.md",
+    "Concepts/baseline.md",
+    "Concepts/On Policy.md",
     "Concepts/Off Policy.md",
     "Literature Notes/Muesli.md",
-    "Output/DQN.md",
     "Literature Notes/Trust Region Policy Optimization.md",
     "2023-01-23.md",
     "Literature Notes/Training a Helpful and Harmless Assistant with Reinforcement Learning From Human Feedback.md",
-    "2023-01-13.md",
-    "Literature Notes/NeurIPS 2020 Tutorial on Offline RL.md"
+    "2023-01-13.md"
   ]
 }

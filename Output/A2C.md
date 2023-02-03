@@ -1,3 +1,6 @@
+---
+category: "post"
+---
 Building from the foundation of Q learning we learned in the last article we now explore an on policy algorithm using policy gradients and actor critic methods. DQN relied upon a experience replay memory in order to get it's results. This makes it an [[Off Policy]] algorithm. 
 
 An [[Off Policy]] algorithm is one that can rely upon previous memories to update the parameters. The benefit of this is the memory replay often used in these algorithms reduces the effects of the non-stationarity nature of RL i.e. the fact the target also relies upon the function approximator itself. It also will de-coorelates updates so that we are training on data that is randomly sampled instead of all adjacent. Off Policy methods also have the benefit of being far more sample efficient due to being able to reuse old data.
@@ -36,11 +39,15 @@ $$
 
 Now we have a value that looks very close to what we started with and this equation is equivalent to:
 $$
-= \mathop{\mathbb{E}}_{d,\pi_{\theta}}R(s,a)\nabla_{\theta}\log \pi_{\theta}(a|s)
+= \mathop{\mathbb{E}}_{d,\pi_{\theta}}[R(s,a)\nabla_{\theta}\log \pi_{\theta}(a|s)]
 $$
-Now we have an expectation that we can sample.
+Now we have an expectation that we can sample from.
 
-One way we can reduce the variance and keep stability is by subtracting a baselines from our loss.
+*Baselines*
+One way we can reduce the variance and keep stability is by subtracting a learned function called the [[baseline]] $b_{t}(s_{t})$ from our reward. So:
+$$
+= \mathop{\mathbb{E}}_{d,\pi_{\theta}}[\nabla_{\theta}\log \pi_{\theta}(a|s)(R(s,a) - b_{t}(s_{t}))]
+$$
 
 *A2C*
 The formula for the A2C loss is as follows:
