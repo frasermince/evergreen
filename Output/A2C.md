@@ -1,11 +1,11 @@
 ---
 category: "post"
 ---
-Building from the foundation of Q learning we learned in the last article we now explore an on policy algorithm using policy gradients and actor critic methods. DQN relied upon a experience replay memory in order to get it's results. This makes it an [[Off Policy]] algorithm. 
+Building from the foundation of Q learning we learned in the last article we now explore an on policy algorithm using policy gradients and actor critic methods. DQN relied upon a experience replay memory in order to get it's results. This makes it an Off Policy algorithm. 
 
-An [[Off Policy]] algorithm is one that can rely upon previous memories to update the parameters. The benefit of this is the memory replay often used in these algorithms reduces the effects of the non-stationarity nature of RL i.e. the fact the target also relies upon the function approximator itself. It also will de-coorelates updates so that we are training on data that is randomly sampled instead of all adjacent. Off Policy methods also have the benefit of being far more sample efficient due to being able to reuse old data.
+An Off Policy algorithm is one that can rely upon previous memories to update the parameters. The benefit of this is the memory replay often used in these algorithms reduces the effects of the non-stationarity nature of RL i.e. the fact the target also relies upon the function approximator itself. It also will de-coorelates updates so that we are training on data that is randomly sampled instead of all adjacent. Off Policy methods also have the benefit of being far more sample efficient due to being able to reuse old data.
 
-In contrast an [[On Policy]] algorithm only relies upon data from the most recent policy. The benefit of an On Policy method is that you are directly optimizing the thing you actually care about. A value function like in DQN can act indirectly to optimize towards a good policy but there are more failure modes and less stability due to this indirectness.
+In contrast an On Policy algorithm only relies upon data from the most recent policy. The benefit of an On Policy method is that you are directly optimizing the thing you actually care about. A value function like in DQN can act indirectly to optimize towards a good policy but there are more failure modes and less stability due to this indirectness.
 
 So it would be advantageous to directly optimize for the thing we care about, namely the policy. But how do we do this without losing stability?
 
