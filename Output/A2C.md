@@ -10,9 +10,17 @@ In contrast an [[On Policy]] algorithm only relies upon data from the most recen
 So it would be advantageous to directly optimize for the thing we care about, namely the policy. But how do we do this without losing stability?
 
 *Basic Policy Gradient*
-What we want to do is take the gradient of the reward so we can optimize for maximum reward:
+We want to be able to optimize the reward over a trajectory $\tau$. A trajectory being a series of states, actions, and rewards.
+
+So:
 $$
-\nabla\mathop{\mathbb{E}}_{\pi_{\theta}}[R(S,A)]
+R(\tau) = \sum_{t=0}^{H}R(s_{t}, u_{t})
+$$
+
+What we want to do calculate the utility which is equal to  the expectation of the reward over all trajectories sampled from a policy.
+
+$$
+U(\theta) = \nabla\mathop{\mathbb{E}}_{\pi_{\theta}}[R(\tau))]
 $$
 
 However the you cannot sample from a gradient of an expectation so this is not exactly tractable. But using a simple algebraic trick we can turn this into something that we can sample from. What follows is called the REINFORCE trick or the log likelihood trick:
@@ -48,8 +56,12 @@ One way we can reduce the variance and keep stability is by subtracting a learne
 $$
 = \mathop{\mathbb{E}}_{d,\pi_{\theta}}[\nabla_{\theta}\log \pi_{\theta}(a|s)(R(s,a) - b_{t}(s_{t}))]
 $$
+The reason we can do this is because the expectation of the gradient of the log probabilities is equal to zero. A great article explaining this is found [here](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html#expected-grad-log-prob-lemma)
+
+A baseline that works great for our purposes is the on policy state value function $V^{\pi}(s_{t})$. Or the average value if a policy gets to state $s_t$ and acts according to the policy in the future.
 
 *A2C*
-The formula for the A2C loss is as follows:
+So given the chosen baseline the formula for the A2C loss is as follows:
 $$
+= \mathop{\mathbb{E}}_{d,\pi_{\theta}}[\nabla_{\theta}\log \pi_{\theta}(a|s)(R(s,a) - V^{\pi}(s_{t}))]
 $$
