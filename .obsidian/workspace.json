@@ -53,7 +53,7 @@
               "type": "markdown",
               "state": {
                 "file": "Output/DQN.md",
-                "mode": "preview",
+                "mode": "source",
                 "backlinks": true,
                 "source": false
               }
@@ -164,7 +164,7 @@
             }
           }
         ],
-        "currentTab": 11
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -240,7 +240,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Output/A2C.md",
+                "file": "Output/DQN.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -257,7 +257,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Output/A2C.md",
+                "file": "Output/DQN.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -280,7 +280,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Output/A2C.md"
+                "file": "Output/DQN.md"
               }
             }
           },
@@ -317,10 +317,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9ca29d317ffd2d21",
+  "active": "401c7e2e52c6ea23",
   "lastOpenFiles": [
-    "Concepts/Off Policy.md",
     "Output/A2C.md",
+    "Concepts/Off Policy.md",
     "Concepts/Can We Create a LLM That Knows What It Doesn't Know.md",
     "Concepts/On Policy.md",
     "Concepts/Pasted image 20230110131822.png",
