@@ -164,7 +164,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -240,7 +240,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Output/DQN.md",
+                "file": "Output/A2C.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -257,7 +257,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Output/DQN.md",
+                "file": "Output/A2C.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -280,7 +280,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Output/DQN.md"
+                "file": "Output/A2C.md"
               }
             }
           },
@@ -317,8 +317,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "401c7e2e52c6ea23",
+  "active": "faacd375be4daa1e",
   "lastOpenFiles": [
+    "Output/DQN.md",
     "Output/A2C.md",
     "Concepts/Off Policy.md",
     "Concepts/Can We Create a LLM That Knows What It Doesn't Know.md",
@@ -327,7 +328,6 @@
     "Concepts/Pasted image 20230110131605.png",
     "2023-02-04.md",
     "2023-02-03.md",
-    "Output/DQN.md",
     "Concepts/baseline.md"
   ]
 }
