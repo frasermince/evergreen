@@ -117,7 +117,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/A2C.md",
+                "file": "Output/Policy Gradients.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -130,7 +130,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/A2C.md",
+                "file": "Output/Policy Gradients.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -143,7 +143,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/A2C.md",
+                "file": "Output/Policy Gradients.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -156,7 +156,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/A2C.md",
+                "file": "Output/Policy Gradients.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -240,7 +240,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Output/A2C.md",
+                "file": "Output/Policy Gradients.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -257,7 +257,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Output/A2C.md",
+                "file": "Output/Policy Gradients.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -280,7 +280,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Output/A2C.md"
+                "file": "Output/Policy Gradients.md"
               }
             }
           },
@@ -317,10 +317,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "faacd375be4daa1e",
+  "active": "2c1eaf49fb9c41eb",
   "lastOpenFiles": [
     "Output/DQN.md",
-    "Output/A2C.md",
+    "Output/Policy Gradients.md",
     "Concepts/Off Policy.md",
     "Concepts/Can We Create a LLM That Knows What It Doesn't Know.md",
     "Concepts/On Policy.md",

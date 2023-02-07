@@ -78,7 +78,7 @@ The reason we can do this is because the expectation of the gradient of the log 
 
 A baseline that works great for our purposes is the on policy state value function $V^{\pi}(s_{t})$. Or the average value if a policy gets to state $s_t$ and acts according to the policy in the future.
 
-*A2C*
+## A2C
 So given the chosen baseline the formula for the A2C loss is as follows:
 $$
 = \mathop{\mathbb{E}}_{d,\pi_{\theta}}[\nabla_{\theta}\log \pi_{\theta}(a|s)(R(s,a) - V^{\pi}(s_{t}))]
