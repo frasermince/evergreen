@@ -9,7 +9,7 @@ In contrast an On Policy algorithm only relies upon data from the most recent po
 
 So it would be advantageous to directly optimize for the thing we care about, namely the policy. But how do we do this without losing stability?
 
-*Basic Policy Gradient*
+## Basic Policy Gradient
 We want to be able to optimize the reward over a trajectory $\tau$. A trajectory being a series of states, actions, and rewards.
 
 So:
@@ -17,45 +17,62 @@ $$
 R(\tau) = \sum_{t=0}^{H}R(s_{t}, u_{t})
 $$
 
-What we want to do calculate the utility which is equal to  the expectation of the reward over all trajectories sampled from a policy.
+What we want to do is calculate the utility which is equal to the expectation of the reward over all trajectories sampled from a policy.
 
 $$
-U(\theta) = \nabla\mathop{\mathbb{E}}_{\pi_{\theta}}[R(\tau))]
+U(\theta) = \mathop{\mathbb{E}}_{\pi_{\theta}}[R(\tau))]
+$$
+or another way of looking at it is we want the reward of a trajectory times the probability of it occurring.
+
+$$
+U(\theta) = \sum_{\tau}P(\tau;\theta)R(\tau))
+$$
+So we take the gradient w.r.t. $\theta$:
+$$
+\nabla_{\theta} U(\theta) = \nabla_{\theta} \sum_{\tau}P(\tau;\theta)R(\tau))
 $$
 
-However the you cannot sample from a gradient of an expectation so this is not exactly tractable. But using a simple algebraic trick we can turn this into something that we can sample from. What follows is called the REINFORCE trick or the log likelihood trick:
-$$
-\nabla\mathop{\mathbb{E}}_{\pi_{\theta}}[R(S,A)] = \nabla_{\theta}\sum_{s}d(s)\sum_{a}\pi_{\theta}(a|s)r_{sa}
-$$
-Where $r_{sa}$ is the expected reward given you are in a state and take an action and $d(s)$ is the probability of being in that state. 
+However the you cannot sample from a gradient  so this is not exactly tractable. But using a simple algebraic trick we can turn this into something that we can sample from. What follows is called the REINFORCE trick, the log likelihood trick, or the score trick. Despite it's many names it is fairly straightforward.
 
-Because the only thing that depends on $\theta$ is the policy $\pi$ we can move the gradient $\nabla$ into the summations.
+First because the only thing that depends on $\theta$ is the probability of  being in a trajectory we can move the gradient $\nabla$ into the summations.
 $$
-= \sum_{s}d(s)\sum_{a}r_{sa}\nabla_{\theta}\pi_{\theta}(a|s)
+\nabla_{\theta} U(\theta) = \sum_{\tau}\nabla_{\theta} P(\tau;\theta)R(\tau))
 $$
-
-Next we will multiply everything by $\frac{\pi_{\theta}(a|s)}{\pi_{\theta}(a|s)}$.
+It would be ideal if this was multiplied by a probability P that does not contain the nabla. Because then we could change this into an expectation that can be sample from.
+To do this we will multiply everything by $\frac{P(\tau;\theta)}{P(\tau;\theta)}$.
 $$
-= \sum_{s}d(s)\sum_{a}r_{sa}\pi_{\theta}(a|s)\frac{\nabla_{\theta}\pi_{\theta}(a|s)}{\pi_{\theta}(a|s)}
+\nabla_{\theta} U(\theta) = \sum_{\tau}\frac{P(\tau;\theta)}{P(\tau;\theta)}\nabla_{\theta} P(\tau;\theta)R(\tau))
 $$
-We can do this of course because we basically just mutiplied the whole thing by one.
+We can do this of course because we just mutiplied the whole thing by one.
 
 Due to a simple application of the chain rule we know that the above is the same as
+
 $$
-= \sum_{s}d(s)\sum_{a}\pi_{\theta}(a|s)r_{sa}\nabla_{\theta}\log \pi_{\theta}(a|s)
+\nabla_{\theta} U(\theta) = \sum_{\tau}P(\tau;\theta)\nabla_{\theta} \log P(\tau;\theta)R(\tau))
 $$
 
-Now we have a value that looks very close to what we started with and this equation is equivalent to:
+Now we have something that looks quite a lot like an expectation. Which we can now change to look like this:
 $$
-= \mathop{\mathbb{E}}_{d,\pi_{\theta}}[R(s,a)\nabla_{\theta}\log \pi_{\theta}(a|s)]
+\nabla_{\theta} U(\theta) = \mathop{\mathbb{E}}_{\tau\sim \pi_{\theta}}[\nabla_{\theta} \log P(\tau;\theta)R(\tau))]
 $$
-Now we have an expectation that we can sample from.
+Now we have an expectation that we can sample from. Now with one more simple step we can change back to an equation in the form of policies instead of who trajectories:
+$$
+\nabla_{\theta} U(\theta) = \mathop{\mathbb{E}}_{\tau\sim \pi_{\theta}}\left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_{t} | s_{t})R(\tau)) \right]
+$$
+And thus we have derived the formula for the simplest policy gradient.
 
-*Baselines*
+## Reward To Go
+To complicate matters a little we are currently using rewards across the whole trajectory. This obviously does not makes sense because our goal is to determine the consequences of our actions. Previous rewards before are current action are irrelevant to our decision making. We only care about rewards from here on out. We call this idea the "rewards to go". We can adjust our formula accordingly to take this into account.
+$$
+\nabla_{\theta} U(\theta) = \mathop{\mathbb{E}}_{\tau\sim \pi_{\theta}}\left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_{t} | s_{t})\sum^{T}_{t'=t}R(s_{t'},a_{t'},s_{t'+1}) \right]
+$$
+
+## Baselines
 One way we can reduce the variance and keep stability is by subtracting a learned function called the [[baseline]] $b_{t}(s_{t})$ from our reward. So:
 $$
-= \mathop{\mathbb{E}}_{d,\pi_{\theta}}[\nabla_{\theta}\log \pi_{\theta}(a|s)(R(s,a) - b_{t}(s_{t}))]
+ = \mathop{\mathbb{E}}_{\tau\sim \pi_{\theta}}\left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_{t} | s_{t})(\sum^{T}_{t'=t}R(s_{t'},a_{t'},s_{t'+1} )- b(s_{t})) \right]
 $$
+
 The reason we can do this is because the expectation of the gradient of the log probabilities is equal to zero. A great article explaining this is found [here](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html#expected-grad-log-prob-lemma)
 
 A baseline that works great for our purposes is the on policy state value function $V^{\pi}(s_{t})$. Or the average value if a policy gets to state $s_t$ and acts according to the policy in the future.
