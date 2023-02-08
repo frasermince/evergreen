@@ -1,5 +1,6 @@
 ---
 category: "post"
+date: 02/01/23
 ---
 # Policy Gradients
 Building from the foundation of Q learning we learned in the last article we now explore an on policy algorithm using policy gradients and actor critic methods. DQN relied upon a experience replay memory in order to get it's results. This makes it an Off Policy algorithm. 
