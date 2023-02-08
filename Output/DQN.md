@@ -1,6 +1,7 @@
 ---
 category: "post"
 stage: "budding"
+date: 01/25/23
 ---
 # DQN
 One of the first algorithms I implemented upon starting on my Reinforcement Learning journey is DQN. I want ot walk you through how it works and some of the nuances. This post is going to assume you know the very basics of RL but if not feel free to check out the [OpenAI Spinning up in RL Guide](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html)

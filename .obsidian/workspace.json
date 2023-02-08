@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/Muzero.md",
+                "file": "Output/DQN.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -75,12 +75,11 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 456.5,
-    "collapsed": true
+    "width": 456.5
   },
   "right": {
     "id": "c246b673a417d7cc",
@@ -96,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Output/Muzero.md",
+                "file": "Output/DQN.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +112,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Output/Muzero.md",
+                "file": "Output/DQN.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Output/Muzero.md"
+                "file": "Output/DQN.md"
               }
             }
           },
@@ -175,8 +174,8 @@
   },
   "active": "36c6f7d87143e91e",
   "lastOpenFiles": [
-    "Output/DQN.md",
     "Output/Muzero.md",
+    "Output/DQN.md",
     "Output/Policy Gradients.md",
     "Concepts/Off Policy.md",
     "Concepts/Can We Create a LLM That Knows What It Doesn't Know.md",
