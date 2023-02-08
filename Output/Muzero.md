@@ -15,8 +15,6 @@ The basic idea of muzero and any of the MCTS methods is to simulate a search in 
 In muzero specifically we explore possible next nodes based upon the following formula:
 $$
 
-\DeclareMathOperator*{\argmax}{argmax}
-
 a^k = \argmax_{a}\left[ Q(s,a) + P(s,a) \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \left( c_{1} + \log \frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}} \right)\right]
 $$
 
