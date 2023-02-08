@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/Policy Gradients.md",
+                "file": "Output/Muzero.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -79,7 +79,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 456.5
+    "width": 456.5,
+    "collapsed": true
   },
   "right": {
     "id": "c246b673a417d7cc",
@@ -95,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Output/Policy Gradients.md",
+                "file": "Output/Muzero.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -112,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Output/Policy Gradients.md",
+                "file": "Output/Muzero.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -135,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Output/Policy Gradients.md"
+                "file": "Output/Muzero.md"
               }
             }
           },
