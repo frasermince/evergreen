@@ -79,8 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 456.5,
-    "collapsed": true
+    "width": 456.5
   },
   "right": {
     "id": "c246b673a417d7cc",
@@ -175,15 +174,15 @@
   },
   "active": "36c6f7d87143e91e",
   "lastOpenFiles": [
-    "Output/DQN.md",
+    "Literature Notes/Muesli.md",
     "Output/Muzero.md",
+    "Output/DQN.md",
     "Output/Policy Gradients.md",
     "Concepts/Off Policy.md",
     "Concepts/Can We Create a LLM That Knows What It Doesn't Know.md",
     "Concepts/On Policy.md",
     "Concepts/Pasted image 20230110131822.png",
     "Concepts/Pasted image 20230110131605.png",
-    "2023-02-04.md",
-    "2023-02-03.md"
+    "2023-02-04.md"
   ]
 }

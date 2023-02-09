@@ -15,12 +15,60 @@ The basic idea of muzero and any of the MCTS methods is to simulate a search in 
 In muzero specifically we choose possible next state to explore with the following formula
 $$
 
-a^k = \argmax_{a}\left[ Q(s,a) + P(s,a) \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \left( c_{1} + \log \frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}} \right)\right]
+a^k = \argmax_{a}\left[ Q(s,a) + P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\cdot \left( c_{1} + \log \left(\frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}}\right) \right)\right]
 $$
+
+Factored out this would be:
+$$
+
+a^k = \argmax_{a}\left[ Q(s,a) + \left( P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \cdot c_{1} + P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \cdot \log \left( \frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}} \right) \right)\right]
+$$
+
 
 with c1 and c2 being hyper parameters set to c1 = 1.25 and c2 = 19652. Q is the state action value function predicted by our network, and p is some policy also predicted by our network.
 
-In previous iterations of the AlphaGo family we could do this with perfect information and with less need to predict since the dynamics of the game were known.
+I feel like this formula was difficult for me to wrap my head around. So let's break it down a little bit. A lot of the added complication in this formula is due to scaling the policy times the visit count ratio $P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}$
+
+I think it's instructive to work through what this would look like in practice so lets pretend we are solving this formula in the full atari environment where there are 18 action choices. Let's assume we have yet to visit any actions in this case the formula, ignoring for now the policy and Q value, for any action a would look like this.
+
+$$
+  P(s,a) \cdot \frac{0}{1 + 0} \cdot 1.25 + P(s,a) \cdot \frac{0}{1 + 0} \cdot \log \left( \frac{\left( 0 + 19652 + 1 \right)}{19652} \right)
+$$
+Certainly not very interesting yet the formula equals zero plus the Q value of each node. That q value will also be initialized to zero so the action chosen to explore next will be entirely random. Now let's see what this formula looks like upon visiting the first node.
+
+For that first node already chosen:
+$$
+  P(s,a) \cdot \frac{\sqrt{ 1 }}{1 + 1} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 1 }}{1 + 1} \cdot \log \left( \frac{\left( 1 + 19652 + 1 \right)}{19652} \right)
+$$
+Reduced to:
+$$
+Q(s,a) + \left(P(s,a) \cdot 0.625 + 0.5 \cdot P(s,a) \cdot 0.000101765633 \right)
+$$
+For other nodes:
+$$
+  P(s,a) \cdot \frac{\sqrt{ 1 }}{1 + 0} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 1 }}{1 + 0} \cdot \log \left( \frac{\left( 1 + 19652 + 1 \right)}{19652} \right)
+$$
+Reduced to:
+$$
+Q(s,a) + \left(P(s,a) \cdot 1.25 + P(s,a) \cdot 0.000101765633 \right)
+$$
+
+So as you can see nodes that are chosen less have their P value weigh more highly making them more likely to be chosen.
+
+Now lets look at the case where each node has been chosen once except the final node:
+$$
+  P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 0} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 0} \cdot \log \left( \frac{\left( 15 + 19652 + 1 \right)}{19652} \right)
+$$
+
+Reduced to:
+$$
+Q(s,a) + \left(P(s,a) \cdot 4.84123 + 3.872983346207417 \cdot P(s,a) \cdot 0.000813835243 \right)
+$$
+
+Note that as other actions are chosen more we value the policy of the unchosen action more and more. Also note that as the total child action count increases more and more we value more the second term including the added policy meaning in practive we value the $P(s,a)$ a bit more compare to the $Q(s,a)$
+
+
+In previous iterations of the AlphaGo family we would do all this with perfect information and with less need to predict since the dynamics of the game were known.
 
 My understanding is that this formula was handcrafted to find a policy that works well. However further research has been done to show this formula or at least the previous alphago version of it tracks policy iteration.
 
