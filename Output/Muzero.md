@@ -55,7 +55,7 @@ $$
 $$
 *Reduced to:*
 $$
-Q(s,a) + \left(P(s,a) \cdot 1.25 + P(s,a) \cdot 0.000101765633 \right)
+Q(s,a) + \left(P(s,a) \cdot 1.25 + 1 \cdot P(s,a) \cdot 0.000101765633 \right)
 $$
 
 So as you can see nodes that are chosen less have their P value weigh more highly making them more likely to be chosen.
