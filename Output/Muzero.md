@@ -28,7 +28,7 @@ a^k = \argmax_{a}\left[ Q(s,a) + \left( P(s,a) \cdot \frac{\sqrt{ \textstyle\sum
 $$
 
 
-With c1 and c2 being hyper parameters set to c1 = 1.25 and c2 = 19652. Q is the state action value function predicted by our network, and p is some policy also predicted by our network.
+With $c_{1}$ and $c_{2}$ being hyper parameters set to $c_{1} = 1.25$ and $c_{2} = 19652$. $Q(s,a)$ is the state action value function predicted by our network, and $P(s,a)$ is some policy also predicted by our network.
 
 I feel like this formula was difficult for me to wrap my head around. So let's break it down a little bit. A lot of the added complication in this formula is due to scaling the policy times the visit count ratio $P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}$
 
