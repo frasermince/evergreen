@@ -6,9 +6,13 @@ An algorithm I spent a significant time implementing was Muzero and I want to ex
 
 
 ## What is Muzero?
-Muzero is in the AlphaGo and AlphaZero family of algorithms. It adepts the monte carlo tree search (MCTS) approach of the previous algorithms in its family and adds in a learned model of the environment. This means it can act in environments where a known model is not present. The previous iteration, AlphaZero,  worked specifically with games where we had a known model of the environment. So it would work in environments such as chess, shogi, and go. But something more ill-defined such as Atari games would never work. Muzero removes this limitation. 
+Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the monte carlo tree search (MCTS) approach of the previous algorithms in its family and adds in a learned model of the environment. This means it can act in environments where a known model is not present. The previous iteration, AlphaZero,  worked specifically with games where we had a known model of the environment. So it would work in environments such as chess, shogi, and go. But something with a less defined dynamics model such as Atari games would not work. Muzero removes this limitation. So to fully grasp Muzero there are a few things we need to understand:
+1. Monte Carlo Tree Search
+2. How Muzero learns it's environment
+3. How Muzero calculates loss
+4. Specifics of network input shapes
 
-## Monte Carlo Search Tree
+## Monte Carlo Tree Search
 
 The basic idea of muzero and any of the MCTS methods is to simulate a search in the environment n times. Where n is a parameter chosen depending on the game. Utilizing what is known or predicted about the model we visit possible future nodes and build a visit policy based upon this information.
 
@@ -17,7 +21,7 @@ $$
 a^k = \argmax_{a}\left[ Q(s,a) + P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\cdot \left( c_{1} + \log \left(\frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}}\right) \right)\right]
 $$
 
-Factored out this would be:
+*Factored out this would be:*
 $$
 
 a^k = \argmax_{a}\left[ Q(s,a) + \left( P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \cdot c_{1} + P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \cdot \log \left( \frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}} \right) \right)\right]
