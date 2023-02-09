@@ -14,7 +14,6 @@ The basic idea of muzero and any of the MCTS methods is to simulate a search in 
 
 In muzero specifically we choose possible next state to explore with the following formula
 $$
-
 a^k = \argmax_{a}\left[ Q(s,a) + P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\cdot \left( c_{1} + \log \left(\frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}}\right) \right)\right]
 $$
 
@@ -55,7 +54,7 @@ $$
 
 So as you can see nodes that are chosen less have their P value weigh more highly making them more likely to be chosen.
 
-Now lets look at the case where each node has been chosen once except the final node:
+Now lets look at the case where each node has been chosen once except the final node. The final node formula would be:
 $$
   Q(s,a) + \left(P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 0} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 0} \cdot \log \left( \frac{\left( 15 + 19652 + 1 \right)}{19652} \right)\right)
 $$
@@ -65,8 +64,37 @@ $$
 Q(s,a) + \left(P(s,a) \cdot 4.84123 + 3.872983346207417 \cdot P(s,a) \cdot 0.000813835243 \right)
 $$
 
-Note that as other actions are chosen more we value the policy of the unchosen action more and more. Also note that as the total child action count increases more and more we value more the second term including the added policy meaning in practive we value the $P(s,a)$ a bit more compare to the $Q(s,a)$
+Others would be:
+$$
+  Q(s,a) + \left(P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 1} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 1} \cdot \log \left( \frac{\left( 15 + 19652 + 1 \right)}{19652} \right)\right)
+$$
 
+Reduced to:
+$$
+Q(s,a) + \left(P(s,a) \cdot 2.4206145914 + 1.9364916731 \cdot P(s,a) \cdot 0.000813835243 \right)
+$$
+
+Note that as other actions are chosen more we value the policy of the unchosen action more and more. Also note that as the total child action count increases more and more we value more the log term including the added policy more. Meaning in practice we value the $P(s,a)$ a bit more compared to $Q(s,a)$. We can even see this taken to an extreme. Let's assume each action has been chosen 30 times except one which has been chosen 29 times. The unchosen action:
+
+
+$$
+  Q(s,a) + \left(P(s,a) \cdot \frac{\sqrt{ 539 }}{1 + 29} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 539 }}{1 + 29} \cdot \log \left( \frac{\left( 539 + 19652 + 1 \right)}{19652} \right)\right)
+$$
+
+Reduced to:
+$$
+Q(s,a) + \left(P(s,a) \cdot 0.967349 + 0.77387912 \cdot P(s,a) \cdot 0.02710737 \right)
+$$
+
+As you can see the log term has now gotten much larger and plays a much larger part of the algorithm.
+
+As stated above most of the complication from this formula is around scaling the various terms. In fact I have seen a simpler version of the formula suggested without this scaling as:
+
+$$
+a^k = \argmax_{a}\left[ Q(s,a) + c_{1} \cdot P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\right]
+$$
+
+If this helps you to think about it this is very close to the actual action choice formula. Just without the gradual scaling the occurs as more actions take place.
 
 In previous iterations of the AlphaGo family we would do all this with perfect information and with less need to predict since the dynamics of the game were known.
 
