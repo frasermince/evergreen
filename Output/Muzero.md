@@ -8,9 +8,14 @@ An algorithm I spent a significant time implementing was Muzero and I want to ex
 ## What is Muzero?
 Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the monte carlo tree search (MCTS) approach of the previous algorithms in its family and adds in a learned model of the environment. This means it can act in environments where a known model is not present. The previous iteration, AlphaZero,  worked specifically with games where we had a known model of the environment. So it would work in environments such as chess, shogi, and go. But something with a less defined dynamics model such as Atari games would not work. Muzero removes this limitation. So to fully grasp Muzero there are a few things we need to understand:
 1. Monte Carlo Tree Search
+	1. Action Selection Formula
+	2. Visit count and Q value updates
+	3. Visit Policy Formula
 2. How Muzero learns it's environment
-3. How Muzero calculates loss
-4. Specifics of network input shapes
+	1. Representation Network
+	2. Dynamics Network
+	3. Prediction Network
+3. Muzero loss calculation
 
 ## Monte Carlo Tree Search
 
