@@ -24,9 +24,11 @@ a^k = \argmax_{a}\left[ Q(s,a) + \left( P(s,a) \cdot \frac{\sqrt{ \textstyle\sum
 $$
 
 
-with c1 and c2 being hyper parameters set to c1 = 1.25 and c2 = 19652. Q is the state action value function predicted by our network, and p is some policy also predicted by our network.
+With c1 and c2 being hyper parameters set to c1 = 1.25 and c2 = 19652. Q is the state action value function predicted by our network, and p is some policy also predicted by our network.
 
 I feel like this formula was difficult for me to wrap my head around. So let's break it down a little bit. A lot of the added complication in this formula is due to scaling the policy times the visit count ratio $P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}$
+
+## Action Selection Formula Broken Down
 
 I think it's instructive to work through what this would look like in practice so lets pretend we are solving this formula in the full atari environment where there are 18 action choices. Let's assume we have yet to visit any actions in this case the formula, ignoring for now the policy and Q value, for any action a would look like this.
 
@@ -35,19 +37,19 @@ $$
 $$
 Certainly not very interesting yet the formula equals zero plus the Q value of each node. That q value will also be initialized to zero so the action chosen to explore next will be entirely random. Now let's see what this formula looks like upon visiting the first node.
 
-For that first node already chosen:
+*For that first node already chosen:*
 $$
   Q(s,a) + \left(P(s,a) \cdot \frac{\sqrt{ 1 }}{1 + 1} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 1 }}{1 + 1} \cdot \log \left( \frac{\left( 1 + 19652 + 1 \right)}{19652} \right)\right)
 $$
-Reduced to:
+*Reduced to:*
 $$
 Q(s,a) + \left(P(s,a) \cdot 0.625 + 0.5 \cdot P(s,a) \cdot 0.000101765633 \right)
 $$
-For other nodes:
+*For other nodes:*
 $$
   Q(s,a) + \left(P(s,a) \cdot \frac{\sqrt{ 1 }}{1 + 0} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 1 }}{1 + 0} \cdot \log \left( \frac{\left( 1 + 19652 + 1 \right)}{19652} \right)\right)
 $$
-Reduced to:
+*Reduced to:*
 $$
 Q(s,a) + \left(P(s,a) \cdot 1.25 + P(s,a) \cdot 0.000101765633 \right)
 $$
@@ -59,17 +61,17 @@ $$
   Q(s,a) + \left(P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 0} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 0} \cdot \log \left( \frac{\left( 15 + 19652 + 1 \right)}{19652} \right)\right)
 $$
 
-Reduced to:
+*Reduced to:*
 $$
 Q(s,a) + \left(P(s,a) \cdot 4.84123 + 3.872983346207417 \cdot P(s,a) \cdot 0.000813835243 \right)
 $$
 
-Others would be:
+*Others would be:*
 $$
   Q(s,a) + \left(P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 1} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 15 }}{1 + 1} \cdot \log \left( \frac{\left( 15 + 19652 + 1 \right)}{19652} \right)\right)
 $$
 
-Reduced to:
+*Reduced to:*
 $$
 Q(s,a) + \left(P(s,a) \cdot 2.4206145914 + 1.9364916731 \cdot P(s,a) \cdot 0.000813835243 \right)
 $$
@@ -81,7 +83,7 @@ $$
   Q(s,a) + \left(P(s,a) \cdot \frac{\sqrt{ 539 }}{1 + 29} \cdot 1.25 + P(s,a) \cdot \frac{\sqrt{ 539 }}{1 + 29} \cdot \log \left( \frac{\left( 539 + 19652 + 1 \right)}{19652} \right)\right)
 $$
 
-Reduced to:
+*Reduced to:*
 $$
 Q(s,a) + \left(P(s,a) \cdot 0.967349 + 0.77387912 \cdot P(s,a) \cdot 0.02710737 \right)
 $$
