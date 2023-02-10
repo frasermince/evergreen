@@ -26,8 +26,9 @@ To fully grasp Muzero there are a few things we need to understand:
 5. Muzero training specifics 
 	1. Prioritized Replay Sampling
 	2. Muzero loss formula
+
 In addition to some advances since then that I hope to explore in the future:
-1. Reanalyze
+1. Muzero Reanalyze
 2. EfficientZero
 3. MCTS as regularized policy optimization
 4. Muesli
