@@ -125,11 +125,6 @@ $$
 
 This is very close in practice to the formula used for Muzero. Just without the gradual scaling that occurs as more actions take place.
 
-In previous iterations of the AlphaGo family we would do all this with perfect information and with less need to predict since the dynamics of the game were known.
-
-My understanding is that this formula was handcrafted to find a policy that works well. However further research has been done to show this formula or at least the previous alphago version of it tracks policy iteration.
-
-
 We end each simulation when an unexplored leaf node has been found. We add this node to the search tree with the computed reward and state. We then update the visit count and Q value of nodes visited within the simulation.
 
 $$
@@ -145,6 +140,7 @@ $$
 G^k = \sum^{l - 1 - k}_{\tau = 0}\gamma^{\tau}r_{k+1+\tau} + \gamma^{l - k}v^l
 $$
 
+In previous iterations of the AlphaGo family we would do all this with in an environment where we would always know exactly how the environment would change due to our actions. The central innovation of Muzero is to adapt this algorithm to environments, like atari, where this is not true.
 ## Learned Model
 
 Muzero is unique because it is predicting the model of the environment using three learned networks usually with a shared base network. These three networks are called representation, dynamics, and prediction.
