@@ -141,14 +141,17 @@ G^k = \sum^{l - 1 - k}_{\tau = 0}\gamma^{\tau}r_{k+1+\tau} + \gamma^{l - k}v^l
 $$
 
 In previous iterations of the AlphaGo family we would do all this with in an environment where we would always know exactly how the environment would change due to our actions. The central innovation of Muzero is to adapt this algorithm to environments, like atari, where this is not true.
+
 ## Learned Model
 
-Muzero is unique because it is predicting the model of the environment using three learned networks usually with a shared base network. These three networks are called representation, dynamics, and prediction.
+Muzero is unique because it is not just building a search tree to find optimal actions but also predicting the dynamics of it's environment. As such it has three learned networks with a shared base network. These three networks are called representation, dynamics, and prediction.
 
 ### Representation
+
 Receives past observations and actions 1..t and returns the hidden state, an encoded representation of the game state.
 
 ### Dynamics
+
 Receives the previous hidden state and the action we're are taking next and produces the immediate reward and a new hidden state.
 
 ### Prediction
