@@ -19,8 +19,13 @@ To fully grasp Muzero there are a few things we need to understand:
 	1. Representation Network
 	2. Dynamics Network
 	3. Prediction Network
-4. Muzero loss calculation
-
+4. Data representation specifics 
+	1. Action support representation
+	2. Invertible Support Transformation
+	3. Rollouts
+5. Muzero training specifics 
+	1. Memory sampling
+	2. Muzero loss formula
 
 ## The AlphaGo Algorithm Family
 So what is the AlphaGo family of algorithms? In short it was created to create a computer program that can beat grand masters at the game of Go. Go was long considered to be a game unsolvable by computers. Chess itself is very difficult for computers due to the large search space of it's moves. For each move for each piece in the game of chess that is a possibility you would have to search. 
