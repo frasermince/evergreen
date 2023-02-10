@@ -26,7 +26,11 @@ To fully grasp Muzero there are a few things we need to understand:
 5. Muzero training specifics 
 	1. Prioritized Replay Sampling
 	2. Muzero loss formula
-
+In addition to some advances since then that I hope to explore in the future:
+1. Reanalyze
+2. EfficientZero
+3. MCTS as regularized policy optimization
+4. Muesli
 ## The AlphaGo Algorithm Family
 So what is the AlphaGo family of algorithms? In short it was created to create a computer program that can beat grand masters at the game of Go. Go was long considered to be a game unsolvable by computers. Chess itself is very difficult for computers due to the large search space of it's moves. For each move for each piece in the game of chess that is a possibility you would have to search. 
 
