@@ -9,35 +9,37 @@ An algorithm I spent a significant time implementing was Muzero and I want to ex
 Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the Monte Carlo Tree Search (MCTS) approach of the previous algorithms in its family and adds in a learned model of the environment. This means it can act in environments where a known model is not present. The previous iteration, AlphaZero,  did not work in environments without a learned model. So it could work in environments such as chess, shogi, and go. But something with a less defined dynamics model such as Atari games would not work. Muzero removes this limitation. 
 
 
-## The AlphaGo Algorithm Family
-So what is the AlphaGo family of algorithms? In short it was created to finally create a computer program that can beat grand masters at the game of Go. Go was long considered to be a game unsolvable by computers. Chess itself was very difficult for computers due to the large search space of it's moves. In other words for each move for each piece in the game of chess that was a possible future you could search. The total search space for the game of chess is quite large. The search space for the game of Go is even larger.
-
-
-One of it's central characteristics is the utilization of an algorithm called Monte Carlo Tree Search. So what is MCTS and why is it so great?
-
-
-
-
 To fully grasp Muzero there are a few things we need to understand:
-1. Monte Carlo Tree Search
+1. AlphaGo family history
+2. Monte Carlo Tree Search
 	1. Action Selection Formula
 	2. Visit count and Q value updates
 	3. Visit Policy Formula
-2. How Muzero learns it's environment
+3. How Muzero learns it's environment
 	1. Representation Network
 	2. Dynamics Network
 	3. Prediction Network
-3. Muzero loss calculation
+4. Muzero loss calculation
+
+
+## The AlphaGo Algorithm Family
+So what is the AlphaGo family of algorithms? In short it was created to create a computer program that can beat grand masters at the game of Go. Go was long considered to be a game unsolvable by computers. Chess itself is very difficult for computers due to the large search space of it's moves. For each move for each piece in the game of chess that is a possibility you would have to search. 
+
+The search space of chess is estimated to be 10^50. Go on the other hand has a a branching factor of 250. The search space of Go is estimated to be 10^170. A whole googol more complex than the game of chess. The naive approach to such a problem would be an exhaustive search but such a large search space makes this impossible. More traditional methods relied heavily upon pruning unpromising parts of the search tree to reduce the search tree size. However knowing what to prune is not easy. The combination of an algorithm called Monte Carlo Search Tree algorithm with neural nets made AlphaGo a reality. So what is Monte Carlo Tree Search (MCTS)?
+
 
 ## Monte Carlo Tree Search
 
-The basic idea of muzero and any of the MCTS methods is to simulate a search in the environment n times. Where n is a parameter chosen depending on the game. Utilizing what is known or predicted about the model we visit possible future nodes and build a visit policy based upon this information.
+MCTS follows a Monte Carlo simulation. Where it chooses actions to take according to an upper confidence bound. This upper confidence bound characterizes the tradeoff between exploration and exploitation. Or the need to look at something new compared to the desire to take advantage of what we already know.
+
+The basic idea of muzero and any of the MCTS methods is to simulate a search in the environment n times. Where n is a parameter chosen depending on the game. Utilizing what is known or predicted about the model we visit possible future nodes and build a visit policy based upon this information. We build up knowledge of how well explored an action is and how valuable it is over each subsequent simulation.
 
 In muzero specifically we choose possible next state to explore with the following formula
 $$
 a^k = \argmax_{a}\left[ Q(s,a) + P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\cdot \left( c_{1} + \log \left(\frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}}\right) \right)\right]
 $$
 
+Where the first part $Q(s,a)$ controls exploitation and the rest controls exploration.
 *Factored out this would be:*
 $$
 
@@ -46,6 +48,8 @@ $$
 
 
 With $c_{1}$ and $c_{2}$ being hyper parameters set to $c_{1} = 1.25$ and $c_{2} = 19652$. $Q(s,a)$ is the state action value function predicted by our network, and $P(s,a)$ is some policy also predicted by our network.
+
+In this formula $c_{1}$ controls the tradeoff between exploiting the value $Q(s,a)$ and further exploration. While $c_{2}$ controls a slowly increasing ratio that increases exploration as more nodes are visited.
 
 I feel like this formula was difficult for me to wrap my head around. So let's break it down a little bit. A lot of the added complication in this formula is due to scaling the policy times the visit count ratio $P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}$
 
@@ -113,13 +117,13 @@ $$
 
 As you can see the log term has now gotten much larger and plays a much larger part of the algorithm.
 
-As stated above most of the complication from this formula is around scaling the various terms. In fact I have seen a simpler version of the formula suggested without this scaling as:
+As stated above most of the complication from this formula is around scaling the various terms. In fact I have seen a simpler version of the formula suggested [in a related paper](https://arxiv.org/pdf/2007.12509.pdf) without this scaling as:
 
 $$
 a^k = \argmax_{a}\left[ Q(s,a) + c_{1} \cdot P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\right]
 $$
 
-If this helps you to think about it this is very close to the actual action choice formula. Just without the gradual scaling the occurs as more actions take place.
+This is very close in practice to the formula used for Muzero. Just without the gradual scaling that occurs as more actions take place.
 
 In previous iterations of the AlphaGo family we would do all this with perfect information and with less need to predict since the dynamics of the game were known.
 
