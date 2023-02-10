@@ -35,7 +35,11 @@ In addition to some advances since then that I hope to explore in the future:
 ## The AlphaGo Algorithm Family
 So what is the AlphaGo family of algorithms? In short it was created to create a computer program that can beat grand masters at the game of Go. Go was long considered to be a game unsolvable by computers. Chess itself is very difficult for computers due to the large search space of it's moves. For each move for each piece in the game of chess that is a possibility you would have to search. 
 
-The search space of chess is estimated to be 10^50. Go on the other hand has a a branching factor of 250. The search space of Go is estimated to be 10^170. A whole googol more complex than the game of chess. The naive approach to such a problem would be an exhaustive search but such a large search space makes this impossible. More traditional methods relied heavily upon pruning unpromising parts of the search tree to reduce the search tree size. However knowing what to prune is not easy. The combination of an algorithm called Monte Carlo Search Tree algorithm with neural nets made AlphaGo a reality. So what is Monte Carlo Tree Search (MCTS)?
+The search space of chess is estimated to be 10^50. Go on the other hand has a a branching factor of 250. The search space of Go is estimated to be 10^170. A whole googol more complex than the game of chess. 
+
+The naive approach to such a problem would be an exhaustive search but such a large search space makes this impossible. More traditional methods relied heavily upon pruning unpromising parts of the search tree to reduce the search tree size. However knowing what to prune is not easy.
+
+The combination of an algorithm called Monte Carlo Search Tree algorithm with neural nets made AlphaGo a reality. So what is Monte Carlo Tree Search (MCTS)?
 
 
 ## Monte Carlo Tree Search
