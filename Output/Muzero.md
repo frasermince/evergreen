@@ -24,7 +24,7 @@ To fully grasp Muzero there are a few things we need to understand:
 	2. Invertible Support Transformation
 	3. Rollouts
 5. Muzero training specifics 
-	1. Memory sampling
+	1. Prioritized Replay Sampling
 	2. Muzero loss formula
 
 ## The AlphaGo Algorithm Family
