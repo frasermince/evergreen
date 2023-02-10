@@ -2,10 +2,10 @@
 category: "post"
 ---
 # Muzero
-An algorithm I spent a significant time implementing was Muzero and I want to explain it here.
-
+In this article I will give an overview of Muzero. An algorithm used for performing well at Go, Chess, Shogi, and Atari. It was the state of the art in each of these domains for a while and has some very interesting ideas worth exploring.
 
 ## What is Muzero?
+
 Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the Monte Carlo Tree Search (MCTS) approach of the previous algorithms in its family and adds in a learned model of the environment. This means it can act in environments where a known model is not present. The previous iteration, AlphaZero,  did not work in environments without a learned model. So it could work in environments such as chess, shogi, and go. But something with a less defined dynamics model such as Atari games would not work. Muzero removes this limitation. 
 
 
