@@ -12,19 +12,19 @@ Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the Monte
 To fully grasp Muzero there are a few things we need to understand:
 1. AlphaGo family history
 2. Monte Carlo Tree Search
-	1. Action Selection Formula
+	1. Action selection formula
 	2. Visit count and Q value updates
-	3. Visit Policy Formula
+	3. Visit policy formula
 3. How Muzero learns it's environment
 	1. Representation Network
 	2. Dynamics Network
 	3. Prediction Network
 4. Data representation specifics 
 	1. Action support representation
-	2. Invertible Support Transformation
+	2. Invertible support transformation
 	3. Rollouts
 5. Muzero training specifics 
-	1. Prioritized Replay Sampling
+	1. Prioritized replay sampling
 	2. Muzero loss formula
 
 In addition to some advances since then that I hope to explore in the future:
