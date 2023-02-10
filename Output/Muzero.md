@@ -6,7 +6,19 @@ An algorithm I spent a significant time implementing was Muzero and I want to ex
 
 
 ## What is Muzero?
-Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the monte carlo tree search (MCTS) approach of the previous algorithms in its family and adds in a learned model of the environment. This means it can act in environments where a known model is not present. The previous iteration, AlphaZero,  worked specifically with games where we had a known model of the environment. So it would work in environments such as chess, shogi, and go. But something with a less defined dynamics model such as Atari games would not work. Muzero removes this limitation. So to fully grasp Muzero there are a few things we need to understand:
+Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the Monte Carlo Tree Search (MCTS) approach of the previous algorithms in its family and adds in a learned model of the environment. This means it can act in environments where a known model is not present. The previous iteration, AlphaZero,  did not work in environments without a learned model. So it could work in environments such as chess, shogi, and go. But something with a less defined dynamics model such as Atari games would not work. Muzero removes this limitation. 
+
+
+## The AlphaGo Algorithm Family
+So what is the AlphaGo family of algorithms? In short it was created to finally create a computer program that can beat grand masters at the game of Go. Go was long considered to be a game unsolvable by computers. Chess itself was very difficult for computers due to the large search space of it's moves. In other words for each move for each piece in the game of chess that was a possible future you could search. The total search space for the game of chess is quite large. The search space for the game of Go is even larger.
+
+
+One of it's central characteristics is the utilization of an algorithm called Monte Carlo Tree Search. So what is MCTS and why is it so great?
+
+
+
+
+To fully grasp Muzero there are a few things we need to understand:
 1. Monte Carlo Tree Search
 	1. Action Selection Formula
 	2. Visit count and Q value updates
