@@ -2,19 +2,21 @@
 category: "post"
 ---
 # Muzero
-In this article I will give an overview of Muzero. An algorithm used for performing well at Go, Chess, Shogi, and Atari. It was the state of the art in each of these domains for a while and has some very interesting ideas worth exploring.
+In 2017 Deepmind wowed the world by having it's new algorithm AlphaGo beat the world champion in Go Ke Jie. This was a feat that was previously thought to be impossible or a least well beyond our capabilities at the moment. Over the next few years Deepmind would continue to release new versions of it's software. It would add the capability to learn from self play, play chess and shogi, and eventually even be able to use the same algorithm to excel at visually complicated atari games.  
+
+The latest version is called Muzero. In this article I want to walk you through how Muzero works. There's a lot of background needed to understand Muzero in it's totality and I hope to help illucidate how it works and the history that led to it's development.
 
 ## What is Muzero?
 
-Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the Monte Carlo Tree Search (MCTS) approach of the previous algorithms in its family and adds in a learned model of the environment. This means it can act in environments where a known model is not present. The previous iteration, AlphaZero,  did not work in environments without a learned model. So it could work in environments such as chess, shogi, and go. But something with a less defined dynamics model such as Atari games would not work. Muzero removes this limitation. 
+Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the Monte Carlo Tree Search (MCTS) approach of the previous algorithms in its family and adds in a learned model of its environment. This means it can act in environments where a known model is not present. The previous iteration, AlphaZero,  required environments where the transition dynamics were known. So it could work in environments such as chess, shogi, and go but something with a less defined dynamics model such as Atari games would not work. Muzero removes this limitation and achieves the state of the art on the Atari suite of environments. 
 
 
 To fully grasp Muzero there are a few things we need to understand:
 1. AlphaGo family history
 2. Monte Carlo Tree Search
-	1. Action selection formula
-	2. Visit count and Q value updates
-	3. Visit policy formula
+	1. Selection
+	2. Expansion
+	3. Backup
 3. How Muzero learns it's environment
 	1. Representation Network
 	2. Dynamics Network
@@ -32,21 +34,30 @@ In addition to some advances since then that I hope to explore in the future:
 2. EfficientZero
 3. MCTS as regularized policy optimization
 4. Muesli
-## The AlphaGo Algorithm Family
-So what is the AlphaGo family of algorithms? In short it was created to create a computer program that can beat grand masters at the game of Go. Go was long considered to be a game unsolvable by computers. Chess itself is very difficult for computers due to the large search space of it's moves. For each move for each piece in the game of chess that is a possibility you would have to search. 
 
-The search space of chess is estimated to be 10^50. Go on the other hand has a a branching factor of 250. The search space of Go is estimated to be 10^170. A whole googol more complex than the game of chess. 
+## The AlphaGo Algorithm Family
+
+So what is the AlphaGo family of algorithms? As stated above they were developed to create a computer program that can beat grand masters at the game of Go. Go was long considered to be a game unsolvable by computers. 
+
+Chess itself is very difficult for computers due to the large search space of it's moves. For each move for each piece in the game of chess that is a possibility you would have to search. 
+
+The search space of chess is estimated to be 10^50. Go has a much larger set of valid moves and thus a much larger branching factor coming in at 250. The search space of Go is estimated to be 10^170. A whole googol more complex than the game of chess. 
 
 The naive approach to such a problem would be an exhaustive search but such a large search space makes this impossible. More traditional methods relied heavily upon pruning unpromising parts of the search tree to reduce the search tree size. However knowing what to prune is not easy.
 
-The combination of an algorithm called Monte Carlo Search Tree algorithm with neural nets made AlphaGo a reality. So what is Monte Carlo Tree Search (MCTS)?
-
+AlphaGo's genius was combining a Monte Carlo Search Tree (MCTS) algorithm with value and policy functions estimated by neural nets. So what is Monte Carlo Tree Search (MCTS)?
 
 ## Monte Carlo Tree Search
 
-MCTS follows a Monte Carlo simulation. Where it chooses actions to take according to an upper confidence bound. This upper confidence bound characterizes the tradeoff between exploration and exploitation. Or the need to look at something new compared to the desire to take advantage of what we already know.
+In Monte Carlo Tree Search we simulate taking actions from the current point in the environment $n$ times. A simulation ends upon reach an unexplored leaf node. As we take more simulations information about the environment such as visit count and value of each state accumulates biasing which action we will visit next. At the end of $n$ simulations we use this information to create a search policy.
 
-The basic idea of muzero and any of the MCTS methods is to simulate a search in the environment n times. Where n is a parameter chosen depending on the game. Utilizing what is known or predicted about the model we visit possible future nodes and build a visit policy based upon this information. We build up knowledge of how well explored an action is and how valuable it is over each subsequent simulation.
+MCTS follows a Monte-Carlo rollout in a non uniform way. Instead of uniformly sampling actions as done in vanilla Monte-Carlo planning it uses a upper confidence bound to bias which action to simulate next. The MCTS algorithm used in the AlphaGo family is based off of the UCT algorithm (or Upper Confidence Bound for Trees).
+
+### UCT Algorithm
+
+
+
+### Selection
 
 In muzero specifically we choose possible next state to explore with the following formula
 $$
@@ -60,14 +71,13 @@ $$
 a^k = \argmax_{a}\left[ Q(s,a) + \left( P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \cdot c_{1} + P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \cdot \log \left( \frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}} \right) \right)\right]
 $$
 
-
 With $c_{1}$ and $c_{2}$ being hyper parameters set to $c_{1} = 1.25$ and $c_{2} = 19652$. $Q(s,a)$ is the state action value function predicted by our network, and $P(s,a)$ is some policy also predicted by our network.
 
 In this formula $c_{1}$ controls the tradeoff between exploiting the value $Q(s,a)$ and further exploration. While $c_{2}$ controls a slowly increasing ratio that increases exploration as more nodes are visited.
 
 I feel like this formula was difficult for me to wrap my head around. So let's break it down a little bit. A lot of the added complication in this formula is due to scaling the policy times the visit count ratio $P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}$
 
-## Action Selection Formula Broken Down
+### Action Selection Formula Broken Down
 
 I think it's instructive to work through what this would look like in practice so lets pretend we are solving this formula in the full atari environment where there are 18 action choices. Let's assume we have yet to visit any actions in this case the formula, ignoring for now the policy and Q value, for any action a would look like this.
 
@@ -137,7 +147,7 @@ $$
 a^k = \argmax_{a}\left[ Q(s,a) + c_{1} \cdot P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\right]
 $$
 
-This is very close in practice to the formula used for Muzero. Just without the gradual scaling that occurs as more actions take place.
+This is very close in practice to the formula used for Muzero. Just without the gradual scaling that occurs as more actions take place. 
 
 We end each simulation when an unexplored leaf node has been found. We add this node to the search tree with the computed reward and state. We then update the visit count and Q value of nodes visited within the simulation.
 
