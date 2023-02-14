@@ -51,13 +51,40 @@ AlphaGo's genius was combining a Monte Carlo Search Tree (MCTS) algorithm with v
 
 In Monte Carlo Tree Search we simulate taking actions from the current point in the environment $n$ times. A simulation ends upon reach an unexplored leaf node. As we take more simulations information about the environment such as visit count and value of each state accumulates biasing which action we will visit next. At the end of $n$ simulations we use this information to create a search policy.
 
-MCTS follows a Monte-Carlo rollout in a non uniform way. Instead of uniformly sampling actions as done in vanilla Monte-Carlo planning it uses a upper confidence bound to bias which action to simulate next. The MCTS algorithm used in the AlphaGo family is based off of the UCT algorithm (or Upper Confidence Bound for Trees).
+MCTS follows a Monte-Carlo rollout in a non uniform way. Instead of uniformly sampling actions as done in vanilla Monte-Carlo planning it uses an upper confidence bound to bias which action to simulate next. The MCTS algorithm used in the AlphaGo family is based off of the UCT algorithm (or Upper Confidence Bound for Trees) and the PUCB algorithm (Predictor + UCB)
 
 ### UCT Algorithm
+For the simplest example of the [UCT algorithm](http://ggp.stanford.edu/readings/uct.pdf) practice we will look towards the setting of One Armed Bandits. For the Bandit Problem imagine a bunch of slot machines, each with their own reward distribution. Each time we pull the arm we get a chance of rewards based on the reward distribution. From timestep to timestep this distribution is the same so we simplify the problem and remove the need to consider how timesteps effect each other. Then we can focus instead on how we balance exploring the environment with exploiting the high value machines we have already explored. This is where an upper confidence bound becomes useful.
 
+UCT uses the biased Monte Carlo rollout to plan which slot machines to exploit and explore and uses a very simple upper confidence bound called UCB1 to choose which one to try next. The simple algorithm follows the following steps.
+* Examine current state
+* If meets some terminal condition return 0
+* If is an unexplored leaf return state action value.
+* Otherwise select next arm to pull $X_{it}$ with the selection formula
+* Simulate action
+* Update average value with the reward times a discounted recursive call on the next action search
 
+#### Selection Formula
+$$
+I_{t} = \argmax_{i \in \{ 1,\dots, K \}} [\overline{X}_{i, T_{i}(t-1)} + c_{t-1, T_{i}(t-1)}]
+$$
+Where $\overline{X}_{i, T_{i}(t-1)}$ is the average reward for bandit up to timestep $t - 1$,  $T_{i}(t-1)$ is the number of times an arm has been chosen so far, and $c_{t}$ is a bias sequence that weighs which action to choose based on how many times it has been chosen:
+$$
+c_{t,s} = \frac{\sqrt{ 2\ln t }}{s}
+$$
 
-### Selection
+So the formula in a more plainly named coding setting would be:
+
+```python
+argmax(lambda i: average_reward[i] + sqrt(2 * ln(timestep)) / times_chosen[i])
+```
+
+So in short we are doing a simple tradeoff between total number of actions taken and how many times our action has been taken. 
+
+### PUCB
+[PUCB](http://gauss.ececs.uc.edu/Workshops/isaim2010/papers/rosin.pdf) is an evolution of the UCB algorithms that adds a predictor in to the original selection criteria.
+
+### Muzero Selection
 
 In muzero specifically we choose possible next state to explore with the following formula
 $$
