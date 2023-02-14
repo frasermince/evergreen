@@ -2,7 +2,7 @@
 category: "post"
 ---
 # Muzero
-In 2017 Deepmind wowed the world by having it's new algorithm AlphaGo beat the world champion in Go Ke Jie. This was a feat that was previously thought to be impossible or a least well beyond our capabilities at the moment. Over the next few years Deepmind would continue to release new versions of it's software. It would add the capability to learn from self play, play chess and shogi, and eventually even be able to use the same algorithm to excel at visually complicated atari games.  
+In 2017 Deepmind wowed the world when it's algorithm AlphaGo beat the world champion in Go, Ke Jie. This feat was previously thought to be impossible or at least only possible far in the future. Over the next few years Deepmind would continue to improve upon it's initial design. It would add the capability to learn from self play, play chess and shogi, and eventually even be able to use the same algorithm to excel at visually complicated atari games.  
 
 The latest version is called Muzero. In this article I want to walk you through how Muzero works. There's a lot of background needed to understand Muzero in it's totality and I hope to help illucidate how it works and the history that led to it's development.
 
@@ -82,7 +82,7 @@ argmax(lambda i: average_reward[i] + sqrt(2 * ln(timestep)) / times_chosen[i])
 So in short we are doing a simple tradeoff between total number of actions taken and how many times our action has been taken. 
 
 ### PUCB
-[PUCB](http://gauss.ececs.uc.edu/Workshops/isaim2010/papers/rosin.pdf) is an evolution of the UCB algorithms that adds a predictor in to the original selection criteria.
+[PUCB](http://gauss.ececs.uc.edu/Workshops/isaim2010/papers/rosin.pdf) is an evolution of the UCB algorithms that uses contextual information as a predictor during action selection specifically in the environment of Go.
 
 ### Muzero Selection
 
