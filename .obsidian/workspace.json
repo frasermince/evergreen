@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/Muzero.md",
+                "file": "Literature Notes/Muzero.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -85,8 +85,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -238,7 +237,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cd7a513c02a572c2",
+  "active": "36c6f7d87143e91e",
   "lastOpenFiles": [
     "Literature Notes/Muzero.md",
     "Output/Muzero.md",
