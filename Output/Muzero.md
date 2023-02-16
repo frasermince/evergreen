@@ -4,7 +4,7 @@ category: "post"
 # Muzero
 In 2017 Deepmind wowed the world when it's algorithm AlphaGo beat the world champion in Go, Ke Jie. This feat was previously thought to be impossible or at least only possible far in the future. Over the next few years Deepmind would continue to improve upon it's initial design. It would add the capability to learn from self play, play chess and shogi, and eventually even be able to use the same algorithm to excel at visually complicated atari games.  
 
-This latest version is called Muzero. In this article I want to walk you through how Muzero works. There are a lot of moving pieces to understand Muzero and a lot of background needed. I hope to help illucidate how it works and the history that led to it's development.
+This latest version is called Muzero. In this article I want to walk you through how Muzero works. When I started diving into reading this paper I was very aware there was a lot of background knowledge the authors of the paper I had that I did not. There are a lot of moving pieces and ideas that are assumed to be understood. What follows is what I wish I knew going in to reimplementing Muzero and some brief historical notes that led to its development.
 
 ## What is Muzero?
 
@@ -50,7 +50,7 @@ AlphaGo's genius was combining a Monte Carlo Search Tree (MCTS) algorithm with v
 
 In Monte Carlo Tree Search we simulate taking actions from the current point in the environment $n$ times. A simulation ends upon reach an unexplored leaf node. As we take more simulations information about the environment such as visit count and value of each state accumulates biasing which action we will visit next. At the end of $n$ simulations we use this information to create a search policy.
 
-MCTS follows a Monte-Carlo rollout in a non uniform way. Instead of uniformly sampling actions as done in vanilla Monte-Carlo planning it uses an upper confidence bound to bias which action to simulate next. The MCTS algorithm used in the AlphaGo family is based off of the UCT algorithm (or Upper Confidence Bound for Trees) and the PUCB algorithm (Predictor + UCB)
+MCTS follows a Monte-Carlo rollout in a non uniform way. Instead of uniformly sampling actions as done in vanilla Monte-Carlo planning it uses an upper confidence bound to bias which action to simulate next. The MCTS algorithm used in the AlphaGo family is based off of the UCT algorithm (or Upper Confidence Bound for Trees) and the PUCB algorithm (Predictor + UCB). It is considered to be a modified (now renamed from the original paper) pUCT (Predictor + Upper Confidence Bound for Trees) rule.
 
 ### UCT Algorithm
 For the simplest example of the [UCT algorithm](http://ggp.stanford.edu/readings/uct.pdf) practice we will look towards the setting of One Armed Bandits. For the Bandit Problem imagine a bunch of slot machines, each with their own reward distribution. Each time we pull the arm we get a chance of rewards based on the reward distribution. From timestep to timestep this distribution is the same so we simplify the problem and remove the need to consider how timesteps effect each other. Then we can focus instead on how we balance exploring the environment with exploiting the high value machines we have already explored. This is where an upper confidence bound becomes useful.
@@ -81,9 +81,10 @@ argmax(lambda i: average_reward[i] + sqrt(2 * ln(timestep)) / times_chosen[i])
 So in short we are doing a simple tradeoff between total number of actions taken and how many times our action has been taken. 
 
 ### PUCB
+
 [PUCB](http://gauss.ececs.uc.edu/Workshops/isaim2010/papers/rosin.pdf) is an evolution of the UCB algorithms that uses contextual information as a predictor during action selection specifically in the environment of Go. The purpose of this change is to reduce the worst case regret of action selection. Regret is a measure of how costly it is to choose a suboptimal action and is calculated by taking the value of the optimal action minus the value of the action taken. If you want the exact formula for UCT regret and PUCB regret I suggest you check out their [respective](http://ggp.stanford.edu/readings/uct.pdf) [papers](http://gauss.ececs.uc.edu/Workshops/isaim2010/papers/rosin.pdf).
 
-There are a lot of proofs in this paper that are not too relevant for our interests but the main thing we do care about is it introduced the idea of using a probablity distribution as a predictor to bias which actions we take. This becomes directly relevant in the modified (and now renamed) pUCT rule in Muzero.
+There are a lot of proofs in this paper that are not too relevant for our interests but the main idea we do care about that is introduced is the idea of using a probablity distribution as a predictor to bias which actions we take. This becomes directly relevant in the modified (and now renamed) pUCT rule in Muzero.
 
 ### Muzero Selection
 
@@ -91,9 +92,9 @@ In muzero specifically we choose possible next state to explore with the followi
 $$
 a^k = \argmax_{a}\left[ Q(s,a) + P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\cdot \left( c_{1} + \log \left(\frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}}\right) \right)\right]
 $$
-As you can see we are now utilizing a probability distribution $P(s,a)$ to bias which action we take. We start by preferring actions with lower visit counts and high probabilities but over time the $Q(s,a)$, or the state action value, will be weighed more.
+As you can see we are now utilizing a probability distribution $P(s,a)$ as a predictor to bias which action we take. We start by preferring actions with lower visit counts and high probabilities but over time the $Q(s,a)$, or the state action value, will have more weight. This means we first explore proportional to the probability of the policy but as simulations continue we begin to exploit the value $Q(s,a)$ more and more.
 
-Where the first part $Q(s,a)$ controls exploitation and the rest controls exploration.
+
 *Factored out this would be:*
 $$
 
