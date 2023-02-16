@@ -2,15 +2,17 @@
 category: "post"
 ---
 # Muzero
-In 2017 Deepmind wowed the world when it's algorithm AlphaGo beat the world champion in Go, Ke Jie. This feat was previously thought to be impossible or at least only possible far in the future. Over the next few years Deepmind would continue to improve upon it's initial design. It would add the capability to learn from self play, play chess and shogi, and eventually even be able to use the same algorithm to excel at visually complicated atari games.  
+In 2017 Deepmind wowed the world when it's algorithm AlphaGo beat the world champion in Go, Ke Jie. This feat was previously thought to be impossible or at least only possible far in the future. Over the next few years Deepmind would continue to improve upon it's initial design. It would add the capability to learn from self play, play chess and shogi, and eventually excel at visually complex Atari games. The latest version, called MuZero, removes the limitation of requiring known models, enabling it to perform in environments where the transition dynamics are unknown.
 
-This latest version is called Muzero. In this article I want to walk you through how Muzero works. When I started diving into reading this paper I was very aware there was a lot of background knowledge the authors of the paper I had that I did not. There are a lot of moving pieces and ideas that are assumed to be understood. What follows is what I wish I knew going in to reimplementing Muzero and some brief historical notes that led to its development.
+When I started reading and attempting to implement the Muzero paper I was very aware there was a lot of background knowledge the authors of the paper I had that I did not. There are a lot of moving pieces and ideas that are assumed to be understood. What follows is what I wish I knew upon attempting to reimplementing Muzero. I have also tried to explain some of the history that led to the development of Muzero. I believe this will help clarify some of the terms used and help bring understanding to what the central innovations of the AlphaGo family are.
 
 ## What is Muzero?
 
-Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts a Monte Carlo Tree Search (MCTS) approach of the previous algorithms in its family and adds in a learned model of its environment. This means it can act in environments where a known model is not present. The previous iterations required environments where the transition dynamics were known. So it could work in environments such as chess, shogi, and go but something with a more visually noisy and stochastic dynamics model such as Atari games would not work. Muzero removes this limitation and achieves the state of the art in the Atari suite.
+Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the Monte Carlo Tree Search (MCTS) approach of the previous algorithms in its family and adds in a learned model of its environment. This means it can act in environments where a known model is not present. 
 
-To fully grasp Muzero there are a few things we need to understand:
+The previous iterations required environments where the transition dynamics were known. They could work in environments such as Chess, Shogi, and Go where you know exactly how each action will change the board. Something with a more visually noisy and stochastic dynamics model such as Atari games were out of scope. Muzero removes this limitation and achieves the state of the art in the Atari suite.
+
+To fully understand Muzero there are a few things we need to understand:
 1. AlphaGo family history
 2. Monte Carlo Tree Search
 	1. Selection
@@ -48,9 +50,9 @@ AlphaGo's genius was combining a Monte Carlo Search Tree (MCTS) algorithm with v
 
 ## Monte Carlo Tree Search
 
-In Monte Carlo Tree Search we simulate taking actions from the current point in the environment $n$ times. A simulation ends upon reach an unexplored leaf node. As we take more simulations information about the environment such as visit count and value of each state accumulates biasing which action we will visit next. At the end of $n$ simulations we use this information to create a search policy.
+In Monte Carlo Tree Search we simulate taking actions from the current point in the environment $n$ times. We will use some action selection criteria and continue the simulation choosing actions down the tree until we reach an unexplored leaf node. As we take more simulations information about the environment such as visit count and value of each state accumulates biasing which action we will visit next. At the end of $n$ simulations we use this information to create a search policy.
 
-MCTS follows a Monte-Carlo rollout in a non uniform way. Instead of uniformly sampling actions as done in vanilla Monte-Carlo planning it uses an upper confidence bound to bias which action to simulate next. The MCTS algorithm used in the AlphaGo family is based off of the UCT algorithm (or Upper Confidence Bound for Trees) and the PUCB algorithm (Predictor + UCB). It is considered to be a modified (now renamed from the original paper) pUCT (Predictor + Upper Confidence Bound for Trees) rule.
+MCTS follows a Monte-Carlo rollout in a non uniform way. Instead of uniformly sampling actions as done in vanilla Monte-Carlo planning, it uses an upper confidence bound to bias which action to simulate next. The MCTS algorithm used in the AlphaGo family is based off of the UCT algorithm (or Upper Confidence Bound for Trees) and the PUCB algorithm (Predictor + UCB). It is considered to be a modified (now renamed from the original paper) pUCT (Predictor + Upper Confidence Bound for Trees) rule.
 
 ### UCT Algorithm
 For the simplest example of the [UCT algorithm](http://ggp.stanford.edu/readings/uct.pdf) practice we will look towards the setting of One Armed Bandits. For the Bandit Problem imagine a bunch of slot machines, each with their own reward distribution. Each time we pull the arm we get a chance of rewards based on the reward distribution. From timestep to timestep this distribution is the same so we simplify the problem and remove the need to consider how timesteps effect each other. Then we can focus instead on how we balance exploring the environment with exploiting the high value machines we have already explored. This is where an upper confidence bound becomes useful.
@@ -88,7 +90,7 @@ There are a lot of proofs in this paper that are not too relevant for our intere
 
 ### Muzero Selection
 
-In muzero specifically we choose possible next state to explore with the following pUCT rule.
+In Muzero we choose the next action to simulate with the following pUCT rule.
 $$
 a^k = \argmax_{a}\left[ Q(s,a) + P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\cdot \left( c_{1} + \log \left(\frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}}\right) \right)\right]
 $$
@@ -179,6 +181,11 @@ $$
 
 This is very close in practice to the formula used for Muzero. Just without the gradual scaling that occurs as more actions take place. 
 
+### Expansion
+
+Once we reach a state not yet added to the tree we add compute the reward and state from the dynamics function and the policy and value from the prediction function. We store all of this information in a new node in the search tree. The node is initialize with a visit count $N(s^{l},a)$ of 0, a state action value $Q(s^{l},a)$, and a policy $P(s^l, a)$ from the policy $p^l$. This means that the dynamics and prediction function are only called once per simulation upon expansion.
+
+### Backup
 We end each simulation when an unexplored leaf node has been found. We add this node to the search tree with the computed reward and state. We then update the visit count and Q value of nodes visited within the simulation.
 
 $$
