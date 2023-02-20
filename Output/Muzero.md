@@ -186,7 +186,7 @@ This is very close in practice to the formula used for Muzero. Just without the 
 Once we reach a state not yet added to the tree we add compute the reward and state from the dynamics function and the policy and value from the prediction function. We store all of this information in a new node in the search tree. The node is initialize with a visit count $N(s^{l},a)$ of 0, a state action value $Q(s^{l},a)$, and a policy $P(s^l, a)$ from the policy $p^l$. This means that the dynamics and prediction function are only called once per simulation upon expansion.
 
 ### Backup
-We end each simulation when an unexplored leaf node has been found. We add this node to the search tree with the computed reward and state. We then update the visit count and Q value of nodes visited within the simulation.
+Upon adding the new node we then backup the nodes along the path we traversed in the simulation. We update the visit count and Q value of nodes visited within the simulation using the following formula.
 
 $$
 Q(s^{k-1},a^k) := \frac{N(s^{k-1},a^k) \cdot Q(s^{k-1}, a^k) + G^k}{N(s^{k-1},a^k) + 1}
@@ -200,6 +200,13 @@ Where $G^k$ is an estimate from $l$ - $k$ estimate of the cumulative discounted 
 $$
 G^k = \sum^{l - 1 - k}_{\tau = 0}\gamma^{\tau}r_{k+1+\tau} + \gamma^{l - k}v^l
 $$
+
+I felt like from the paper I was unclear on what this select, expand, backup process actually looks like in practice. Below is some pseudocode to hopefully make it a bit more clear.
+
+```python
+
+
+```
 
 In previous iterations of the AlphaGo family we would do all this with in an environment where we would always know exactly how the environment would change due to our actions. The central innovation of Muzero is to adapt this algorithm to environments, like atari, where this is not true.
 

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/Muzero.md",
+                "file": "Output/DQN.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -160,7 +160,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Output/Muzero.md",
+                "file": "Output/DQN.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -177,7 +177,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Output/Muzero.md",
+                "file": "Output/DQN.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -200,7 +200,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Output/Muzero.md"
+                "file": "Output/DQN.md"
               }
             }
           },
@@ -239,15 +239,15 @@
   },
   "active": "36c6f7d87143e91e",
   "lastOpenFiles": [
-    "Literature Notes/Muzero.md",
-    "Output/Muzero.md",
+    "Concepts/Off Policy.md",
+    "Output/DQN.md",
     "Literature Notes/Muesli.md",
+    "2023-02-17.md",
+    "Output/Muzero.md",
+    "Literature Notes/Muzero.md",
     "Literature Notes/Unnatural Instructions Tuning Language Models with (Almost) No Human Labor.md",
     "Output/Muesli.md",
     "Output/AlphaGo as policy iteration.md",
-    "Output/EfficientZero.md",
-    "Output/About.md",
-    "Output/DQN.md",
-    "Output/Policy Gradients.md"
+    "Output/EfficientZero.md"
   ]
 }
