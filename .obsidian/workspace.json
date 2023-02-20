@@ -239,15 +239,15 @@
   },
   "active": "36c6f7d87143e91e",
   "lastOpenFiles": [
-    "Concepts/Off Policy.md",
+    "2023-02-20.md",
     "Output/DQN.md",
+    "Concepts/Off Policy.md",
     "Literature Notes/Muesli.md",
     "2023-02-17.md",
     "Output/Muzero.md",
     "Literature Notes/Muzero.md",
     "Literature Notes/Unnatural Instructions Tuning Language Models with (Almost) No Human Labor.md",
     "Output/Muesli.md",
-    "Output/AlphaGo as policy iteration.md",
-    "Output/EfficientZero.md"
+    "Output/AlphaGo as policy iteration.md"
   ]
 }

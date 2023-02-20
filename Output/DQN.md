@@ -4,7 +4,9 @@ stage: "budding"
 date: 01/25/23
 ---
 # DQN
-One of the first algorithms you might encounter when learning about deep reinforcement learning is DQN. As one of the fundamental algorithms in RL, DQN (Deep Q-Network) has paved the way for many advancements in the field. In this blog post, I will guide you through the mechanics of the DQN algorithm and explore some of its nuances. In this post I will assume a basic understanding of the standard RL problem and it's terminology, if you are not familiar with terms such as environments, policies, actions, etc recommend checking out the comprehensive [OpenAI Spinning up in RL Guide](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html).
+One of the first algorithms you might encounter when learning about deep reinforcement learning is DQN. As one of the fundamental algorithms in RL, DQN (Deep Q-Network) has paved the way for many advancements in the field. 
+
+In this blog post I will guide you through the mechanics of the DQN algorithm and explore some of its nuances. In this post I will assume a basic understanding of the standard RL problem and it's terminology, if you are not familiar with terms such as environments, policies, actions, etc recommend checking out the comprehensive [OpenAI Spinning up in RL Guide](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html).
 
 ## What is DQN
 
@@ -28,7 +30,9 @@ Due to the recursiveness of the Bellman operator above we can minimize error in 
 $$
 L_{i}(\theta) = \mathop{\mathbb{E}}_{s,a \sim p(\cdot)}[(y_{i} - Q(s,a))^2]
 $$
-Specifically what this means is that we sample the state and action used for our Q value from $p(\cdot)$ which is a behavior distribution of states and actions. In practice we will estimate this expectation over the distribution by sampling and using standard SGD descended optimizers found in deep learning frameworks. So instead of calculating a full expectation of the behavior we will sample from previous steps taken in the environment so our neural net can predict the Q value. This sampling of previous timesteps is possible because we are in an off policy setting where we do not care if we are using date from previous versions of a policy. The set of previous steps from the environment is called the Replay Memory.
+Specifically what this means is that we sample the state and action used for our Q value from $p(\cdot)$ which is a behavior distribution of states and actions. In practice we will estimate this expectation over the distribution by sampling and using standard SGD descended optimizers found in deep learning frameworks. 
+
+Instead of calculating a full expectation of the behavior we will sample from previous steps taken in the environment so our neural net can predict the Q value. This sampling of previous timesteps is possible because we are in an off policy setting where we do not care if we are using data from previous versions of a policy. The set of previous steps from the environment is called the Replay Memory.
 
 $y_i$ in the above equation is:
 $$
