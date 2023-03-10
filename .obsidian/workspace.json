@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/DQN.md",
+                "file": "Output/Muzero.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -144,7 +144,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 456.5
+    "width": 456.5,
+    "collapsed": true
   },
   "right": {
     "id": "c246b673a417d7cc",
@@ -160,7 +161,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Output/DQN.md",
+                "file": "Output/Muzero.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -177,7 +178,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Output/DQN.md",
+                "file": "Output/Muzero.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -200,7 +201,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Output/DQN.md"
+                "file": "Output/Muzero.md"
               }
             }
           },
@@ -237,17 +238,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "36c6f7d87143e91e",
+  "active": "13d53fc83a26a7d7",
   "lastOpenFiles": [
-    "2023-02-20.md",
+    "2023-02-22.md",
+    "2023-02-21.md",
     "Output/DQN.md",
+    "2023-02-20.md",
     "Concepts/Off Policy.md",
     "Literature Notes/Muesli.md",
     "2023-02-17.md",
     "Output/Muzero.md",
     "Literature Notes/Muzero.md",
-    "Literature Notes/Unnatural Instructions Tuning Language Models with (Almost) No Human Labor.md",
-    "Output/Muesli.md",
-    "Output/AlphaGo as policy iteration.md"
+    "Literature Notes/Unnatural Instructions Tuning Language Models with (Almost) No Human Labor.md"
   ]
 }

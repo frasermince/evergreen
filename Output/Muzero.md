@@ -201,10 +201,33 @@ $$
 G^k = \sum^{l - 1 - k}_{\tau = 0}\gamma^{\tau}r_{k+1+\tau} + \gamma^{l - k}v^l
 $$
 
-I felt like from the paper I was unclear on what this select, expand, backup process actually looks like in practice. Below is some pseudocode to hopefully make it a bit more clear.
+I felt like from the paper I was unclear on what this select, expand, backup process actually looks like in practice. Below is some pseudocode mostly taken from the excellent [Muzero General](https://github.com/werner-duvaud/muzero-general) to hopefully make it a bit more clear.
 
 ```python
+root_node = initialize_root()
+for _ in range(num_simulations):
+	node = root
+	search_path = [node]
+	# NODE SELECTION
+	while node.expanded():
+		action, node = self.select_child(node)
+		search_path.append(node)
+	parent = search_path[-2]
 
+	# Call our neural net Dynamics and Prediction Functions
+	new_reward, new_hidden_state = dynamics_function(
+		parent.hidden_state,
+		action
+	)
+	(value, policy_logits), _ = prediction_net(parent.hidden_state)
+
+	# EXPANSION STEP
+	# Add nodes for each of the children of the expanded node 
+	policy_distribution = softmax(policy_logits)
+
+	for action_index, policy_prob in policy_distribution:
+		node.children[action_index].probability = Node(p)
+	
 
 ```
 
