@@ -208,24 +208,24 @@ root_node = initialize_root()
 for _ in range(num_simulations):
 	node = root
 	search_path = [node]
-	# NODE SELECTION
+	# NODE SELECTION STEP
 	while node.expanded():
 		action, node = self.select_child(node)
 		search_path.append(node)
 	parent = search_path[-2]
 
-	# Call our neural net Dynamics and Prediction Functions
+	# Call our neural net Dynamics and Prediction functions
 	new_reward, new_hidden_state = dynamics_function(
 		parent.hidden_state,
 		action
 	)
 	(value, policy_logits), _ = prediction_net(parent.hidden_state)
 
-	# EXPANSION STEP
+	# NODE EXPANSION STEP
 	# Add nodes for each of the children of the expanded node 
 	policy_distribution = softmax(policy_logits)
 
-	for action_index, policy_prob in policy_distribution:
+	for action_index, policy_prob in enumerate(policy_distribution):
 		node.children[action_index].probability = Node(p)
 	
 
