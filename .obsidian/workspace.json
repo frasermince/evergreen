@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Daily Notes/2022-12-23.md",
+                "file": "index.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -117,7 +117,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Daily Notes/2022-12-23.md",
+                "file": "index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -134,7 +134,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Daily Notes/2022-12-23.md",
+                "file": "index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -157,7 +157,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Daily Notes/2022-12-23.md"
+                "file": "index.md"
               }
             }
           },
@@ -196,7 +196,8 @@
   },
   "active": "13d53fc83a26a7d7",
   "lastOpenFiles": [
-    "Index.md",
+    "Daily Notes/2022-12-23.md",
+    "index.md",
     "Daily Notes",
     "Output/EfficientZero.md",
     "Concepts/Gardening.md",
