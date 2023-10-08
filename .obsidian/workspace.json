@@ -8,58 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "36c6f7d87143e91e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Output/Muzero.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "31b2cfba279db7d4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2023-03-21.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "7727e9a6a0b0fcf6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2023-10-07.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "cd7a513c02a572c2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Literature Notes/Muzero.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "20f413916734022c",
             "type": "leaf",
             "state": {
@@ -73,38 +21,12 @@
             }
           },
           {
-            "id": "ecd709a52284b7a3",
+            "id": "fcb1e5831e39113c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Output/AlphaGo as policy iteration.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2789c1a51e0fcd9d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Literature Notes/Unnatural Instructions Tuning Language Models with (Almost) No Human Labor.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "781493b719237443",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Output/About.md",
+                "file": "Index.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -112,7 +34,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -129,7 +51,7 @@
             "id": "b41e4fa8654cbdad",
             "type": "leaf",
             "state": {
-              "type": "pocket_item_list",
+              "type": "empty",
               "state": {}
             }
           },
@@ -165,6 +87,14 @@
                 "sortOrder": "alphabetical"
               }
             }
+          },
+          {
+            "id": "1c89da4a3f46aa41",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ],
         "currentTab": 3
@@ -187,7 +117,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2023-10-07.md",
+                "file": "Index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -204,7 +134,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2023-10-07.md",
+                "file": "Index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -227,7 +157,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2023-10-07.md"
+                "file": "Index.md"
               }
             }
           },
@@ -264,10 +194,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7727e9a6a0b0fcf6",
+  "active": "13d53fc83a26a7d7",
   "lastOpenFiles": [
-    "2023-04-12.md",
+    "Output/EfficientZero.md",
+    "Index.md",
+    "Concepts/Gardening.md",
+    "2023-10-08.md",
     "2023-10-07.md",
+    "2023-04-12.md",
     "2023-04-11.md",
     "Drafts/Portability.md",
     "2023-04-02.md",

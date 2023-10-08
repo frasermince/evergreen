@@ -4,5 +4,6 @@
   "baseFontSize": 29,
   "enabledCssSnippets": [
     "codeblock"
-  ]
+  ],
+  "theme": "system"
 }
