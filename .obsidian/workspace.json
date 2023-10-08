@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "Literature Notes/Trust Region Policy Optimization.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -117,7 +117,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "index.md",
+                "file": "Literature Notes/Trust Region Policy Optimization.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -134,7 +134,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "index.md",
+                "file": "Literature Notes/Trust Region Policy Optimization.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -157,7 +157,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index.md"
+                "file": "Literature Notes/Trust Region Policy Optimization.md"
               }
             }
           },
@@ -194,13 +194,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "13d53fc83a26a7d7",
+  "active": "fcb1e5831e39113c",
   "lastOpenFiles": [
-    "Daily Notes/2022-12-23.md",
+    "Literature Notes/Training a Helpful and Harmless Assistant with Reinforcement Learning From Human Feedback.md",
+    "Literature Notes/L4 TRPO and PPO (Foundations of Deep RL Series).md",
+    "Overview.md",
+    "Concepts/Gardening.md",
     "index.md",
+    "Daily Notes/2022-12-23.md",
     "Daily Notes",
     "Output/EfficientZero.md",
-    "Concepts/Gardening.md",
     "Daily Notes/2023-10-08.md",
     "Daily Notes/2023-10-07.md",
     "Daily Notes/2023-04-12.md",
@@ -221,8 +224,6 @@
     "Concepts/Off Policy.md",
     "Literature Notes/Muesli.md",
     "Daily Notes/2023-02-17.md",
-    "Output/Muzero.md",
-    "Literature Notes/Muzero.md",
-    "Literature Notes/Unnatural Instructions Tuning Language Models with (Almost) No Human Labor.md"
+    "Output/Muzero.md"
   ]
 }

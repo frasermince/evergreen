@@ -7,7 +7,8 @@ $$
 
 \theta_{k+1} = \arg \max_{\theta} L(\theta_{k}, \theta)
 \newline s.t. \bar{D}_{KL} (\theta\|\theta_{k}) \leq \delta
-}$$
+}
+$$
 Where $L(\theta_{k}, \theta)$ is surrogate advantage. Meaning how the new policy performs compared to the old. $s.t.$ refers to "such that" and $\bar{D}_{KL} (\theta\|\theta_{k})$ refers to the average [[KL Divergence]] between the new parameters and the old. 
 
 L is defined as follows:
