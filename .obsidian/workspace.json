@@ -26,7 +26,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Literature Notes/Trust Region Policy Optimization.md",
+                "file": "Output/Muzero.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "728b76635e6868e5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Output/Muzero.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -34,7 +47,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -101,7 +114,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 456.5
+    "width": 241.5
   },
   "right": {
     "id": "c246b673a417d7cc",
@@ -117,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Literature Notes/Trust Region Policy Optimization.md",
+                "file": "Output/Muzero.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -134,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Literature Notes/Trust Region Policy Optimization.md",
+                "file": "Output/Muzero.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -157,7 +170,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Literature Notes/Trust Region Policy Optimization.md"
+                "file": "Output/Muzero.md"
               }
             }
           },
@@ -194,8 +207,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fcb1e5831e39113c",
+  "active": "728b76635e6868e5",
   "lastOpenFiles": [
+    "etsy/Etsy plan.md",
+    "Daily Notes/2023-10-13.md",
+    "Daily Notes/2023-10-11.md",
+    "Daily Notes/2023-10-08.md",
+    "Organization/Executive Function Tasks.md",
+    "Output/Muzero.md",
+    "Output/AlphaGo as policy iteration.md",
+    "Output/About.md",
+    "Output/Untitled.md",
+    "Organization",
+    "Output/Muesli.md",
+    "Literature Notes/Trust Region Policy Optimization.md",
+    "etsy",
     "Literature Notes/Training a Helpful and Harmless Assistant with Reinforcement Learning From Human Feedback.md",
     "Literature Notes/L4 TRPO and PPO (Foundations of Deep RL Series).md",
     "Overview.md",
@@ -204,7 +230,6 @@
     "Daily Notes/2022-12-23.md",
     "Daily Notes",
     "Output/EfficientZero.md",
-    "Daily Notes/2023-10-08.md",
     "Daily Notes/2023-10-07.md",
     "Daily Notes/2023-04-12.md",
     "Daily Notes/2023-04-11.md",
@@ -214,16 +239,6 @@
     "Daily Notes/2023-03-21.md",
     "Concepts/Pasted image 20230110131822.png",
     "Concepts/Pasted image 20230110131605.png",
-    "Learning Paths/TRLX.md",
-    "Daily Notes/2023-03-16.md",
-    "Daily Notes/2023-03-15.md",
-    "Daily Notes/2023-02-22.md",
-    "Daily Notes/2023-02-21.md",
-    "Output/DQN.md",
-    "Daily Notes/2023-02-20.md",
-    "Concepts/Off Policy.md",
-    "Literature Notes/Muesli.md",
-    "Daily Notes/2023-02-17.md",
-    "Output/Muzero.md"
+    "Learning Paths/TRLX.md"
   ]
 }

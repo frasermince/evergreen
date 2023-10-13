@@ -2,23 +2,25 @@
 category: "post"
 ---
 # Muzero
-In 2017 Deepmind wowed the world when it's algorithm AlphaGo beat the world champion in Go, Ke Jie. This feat was previously thought to be impossible or at least only possible far in the future. Over the next few years Deepmind would continue to improve upon it's initial design. It would add the capability to learn from self play, play chess and shogi, and eventually excel at visually complex Atari games. The latest version, called MuZero, removes the limitation of requiring known models, enabling it to perform in environments where the transition dynamics are unknown.
+In recent months, rumors of a new multimodal LLM from Google DeepMind called Gemini have been circulating. According to an interview in Wired, the head of DeepMind said this new LLM will use some of the fundamental "techniques used in AlphaGo, aiming to give the system new capabilities such as planning or the ability to solve problems." But what is AlphaGo? What does it actually do? In this post I want to go into detail on the different iterations of the algorithm, with particular emphasis on a more general version, [MuZero](https://www.deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules).
 
-When I started reading and attempting to implement the Muzero paper I was very aware there was a lot of background knowledge the authors of the paper I had that I did not. There are a lot of moving pieces and ideas that are assumed to be understood. What follows is what I wish I knew upon attempting to reimplementing Muzero. I have also tried to explain some of the history that led to the development of Muzero. I believe this will help clarify some of the terms used and help bring understanding to what the central innovations of the AlphaGo family are.
+In 2017, DeepMind garnered significant attention in the artificial intelligence community when its algorithm, AlphaGo, defeated the world champion in Go, Ke Jie. This achievement was especially notable as the intricacies of Go had long made such a feat seem nearly insurmountable. In the ensuing years, DeepMind refined its initial design, incorporating self-play learning, expanding its proficiency to Chess and Shogi, and mastering visually intricate Atari games. The most recent iteration, MuZero, transcends previous constraints by eliminating the need for known models, empowering it to operate in environments with unknown transition dynamics (such as Atari).
+
+Looking for a place to hone my research skills and continue to improve my grasp of Reinforcement Learning, I made it a goal of mine to understand and implement the MuZero algorithm. As I began to read and implement the [MuZero paper](https://arxiv.org/abs/1911.08265), it became evident that there was a significant amount of background knowledge the authors had that I lacked. There are a lot of moving pieces and ideas that are assumed to be understood. What follows is what I wish I knew before attempting to reimplement Muzero. I have also tried to explain some of the history that led to the development of Muzero. This will help clarify some of the terms used and help bring understanding to the AlphaGo family's central innovations.
 
 ## What is Muzero?
 
-Muzero is in the AlphaGo and AlphaZero family of algorithms. It adopts the Monte Carlo Tree Search (MCTS) approach of the previous algorithms in its family and adds in a learned model of its environment. This means it can act in environments where a known model is not present. 
+MuZero is in the same family of algorithms as AlphaGo and AlphaZero. It adopts the Monte Carlo Tree Search (MCTS) approach of the previous algorithms in its family and adds a learned model of its environment. Meaning it predicts how the environment will respond to actions through a representation it learns over time.
 
-The previous iterations required environments where the transition dynamics were known. They could work in environments such as Chess, Shogi, and Go where you know exactly how each action will change the board. Something with a more visually noisy and stochastic dynamics model such as Atari games were out of scope. Muzero removes this limitation and achieves the state of the art in the Atari suite.
+The previous iterations required environments where the transition dynamics were known. This worked well in environments such as Chess, Shogi, and Go, where the exact transitions are known. If you move a piece in chess you know exactly what the board looks like afterward. Any variability or noise in how the state would change post-action (as in Atari games) made an environment a poor fit for these algorithms. MuZero removed this limitation and, at the time, achieved state-of-the-art on the Atari suite.
 
-To fully understand Muzero there are a few things we need to understand:
+To gain a full understanding of MuZero I have broken down the algorithm into smaller more digestible pieces:
 1. AlphaGo family history
 2. Monte Carlo Tree Search
 	1. Selection
 	2. Expansion
 	3. Backup
-3. How Muzero learns it's environment
+3. How MuZero learns it's environment
 	1. Representation Network
 	2. Dynamics Network
 	3. Prediction Network
@@ -26,25 +28,25 @@ To fully understand Muzero there are a few things we need to understand:
 	1. Action support representation
 	2. Invertible support transformation
 	3. Rollouts
-5. Muzero training specifics 
+5. MuZero training specifics 
 	1. Prioritized replay sampling
-	2. Muzero loss formula
+	2. MuZero loss formula
 
 In addition to some advances since then that I hope to explore in the future:
-1. Muzero Reanalyze
+1. MuZero Reanalyze
 2. EfficientZero
 3. MCTS as regularized policy optimization
 4. Muesli
 
 ## The AlphaGo Algorithm Family
 
-So what is the AlphaGo family of algorithms? As stated above they were developed to create a computer program that can beat grand masters at the game of Go. Go was long considered to be a game unsolvable by computers. 
+So what is the AlphaGo family of algorithms? As stated above they were developed to create a computer program that can beat grandmasters at the game of Go. Go was long considered a game that was intractably hard for computers to win at while playing experts.
 
-Chess itself is very difficult for computers due to the large search space of it's moves. For each move for each piece in the game of chess that is a possibility you would have to search. 
+Chess itself is very difficult for computers due to its large search space of moves. For each move for each piece in the game of chess that is a possibility you would have to search. 
 
-The search space of chess is estimated to be 10^50. Go has a much larger set of valid moves and thus a much larger branching factor coming in at 250. The search space of Go is estimated to be 10^170. A whole googol more complex than the game of chess. 
+The search space of chess is estimated to be 10^50. Go has a much larger set of valid moves and thus a much larger branching factor coming in at 250. The search space of Go is estimated to be 10^170. This comes out to a whole googol more complex than the game of chess. 
 
-The naive approach to such a problem would be an exhaustive search but such a large search space makes this impossible. More traditional methods relied heavily upon pruning unpromising parts of the search tree to reduce the search tree size. However knowing what to prune is not easy.
+The naive approach to such a problem would be an exhaustive search but such a large search space makes this impossible. More traditional methods relied heavily on pruning unprosmising parts of ithe search tree zto reduce the e. However knowing what to prune is not easy.
 
 AlphaGo's genius was combining a Monte Carlo Search Tree (MCTS) algorithm with value and policy functions estimated by neural nets. So what is Monte Carlo Tree Search (MCTS)?
 
@@ -52,7 +54,7 @@ AlphaGo's genius was combining a Monte Carlo Search Tree (MCTS) algorithm with v
 
 In Monte Carlo Tree Search we simulate taking actions from the current point in the environment $n$ times. We will use some action selection criteria and continue the simulation choosing actions down the tree until we reach an unexplored leaf node. As we take more simulations information about the environment such as visit count and value of each state accumulates biasing which action we will visit next. At the end of $n$ simulations we use this information to create a search policy.
 
-MCTS follows a Monte-Carlo rollout in a non uniform way. Instead of uniformly sampling actions as done in vanilla Monte-Carlo planning, it uses an upper confidence bound to bias which action to simulate next. The MCTS algorithm used in the AlphaGo family is based off of the UCT algorithm (or Upper Confidence Bound for Trees) and the PUCB algorithm (Predictor + UCB). It is considered to be a modified (now renamed from the original paper) pUCT (Predictor + Upper Confidence Bound for Trees) rule.
+MCTS follows a Monte-Carlo rollout in a non-uniform way. Instead of uniformly sampling actions as done in vanilla Monte-Carlo planning, it uses an upper confidence bound to bias which action to simulate next. The MCTS algorithm used in the AlphaGo family is based off of the UCT algorithm (or Upper Confidence Bound for Trees) and the PUCB algorithm (Predictor + UCB). It is considered to be a modified (now renamed from the original paper) pUCT (Predictor + Upper Confidence Bound for Trees) rule.
 
 ### UCT Algorithm
 For the simplest example of the [UCT algorithm](http://ggp.stanford.edu/readings/uct.pdf) practice we will look towards the setting of One Armed Bandits. For the Bandit Problem imagine a bunch of slot machines, each with their own reward distribution. Each time we pull the arm we get a chance of rewards based on the reward distribution. From timestep to timestep this distribution is the same so we simplify the problem and remove the need to consider how timesteps effect each other. Then we can focus instead on how we balance exploring the environment with exploiting the high value machines we have already explored. This is where an upper confidence bound becomes useful.
