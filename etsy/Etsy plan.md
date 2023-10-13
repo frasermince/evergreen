@@ -20,6 +20,7 @@
 		* Art 1
 		* Art 2
 		* Art 3
+		* Art 4
 * De Stijl - 5
 	* Print Mondrian Art
 	* Minimalist Wall Art
@@ -35,17 +36,20 @@
 	* Bauhaus art
 	* Bauhaus art print
 * Afrofuturism - 5
-	* afrofuturism
-	* sculptural
-	* profile silhouette
-	* luxurious wall art
-	* feminine art
-	* Modern Wall Art
-	* Wall Decor
-	* Contemporary Art
-	* afrocentric wall art
-	* Intricate Design
-	* Statement Piece
+	* Tags
+		* afrofuturism
+		* sculptural
+		* profile silhouette
+		* luxurious wall art
+		* feminine art
+		* Modern Wall Art
+		* Wall Decor
+		* Contemporary Art
+		* afrocentric wall art
+		* Intricate Design
+		* Statement Piece
+	* Afrofuture 1
+	* Afrofuture 2
 * Abstract maps - 5
 	* Surrealism
 	* Geographical Art

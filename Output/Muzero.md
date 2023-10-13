@@ -95,13 +95,16 @@ In MuZero we choose the next action to simulate with the following pUCT rule.
 $$
 a^k = \argmax_{a}\left[ Q(s,a) + P(s,a) \cdot\frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)}\cdot \left( c_{1} + \log \left(\frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}}\right) \right)\right]
 $$
-As you can see we are now utilizing a probability distribution $P(s,a)$ as a predictor to bias which action we take. We start by preferring actions with lower visit counts and high probabilities but over time the $Q(s,a)$, or the state action value, will have more weight. This means we first explore proportional to the probability of the policy but as simulations continue we begin to exploit the value $Q(s,a)$ more and more.
+As you can see we are now utilizing a probability distribution $P(s,a)$ as a predictor to bias which action we take. We start by preferring actions with lower visit counts and high probabilities but over time the $Q(s,a)$, or the state action value, will have more weight. This means we first explore proportional to the probability of the policy but as simulations continue we increasingly exploit the value $Q(s,a)$.
 
 
 *Factored out this would be:*
 $$
-
-a^k = \argmax_{a}\left[ Q(s,a) + \left( P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \cdot c_{1} + P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \cdot \log \left( \frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}} \right) \right)\right]
+\begin{gathered}
+a^k = \argmax_{a}\left[ Q(s,a) + \right. &\\ &\left.\left( P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \cdot c_{1} \right.\right.\\
+&\left.\left. + P(s,a) \cdot \frac{\sqrt{ \textstyle\sum_{b} N(s,b)}}{1 + N(s,a)} \right.\right.\\
+&\left.\left.\cdot \log \left( \frac{\left( \textstyle\sum_{b} N(s,b) + c_{2} + 1 \right)}{c_{2}} \right) \right)\right]
+\end{gathered}
 $$
 
 With $c_{1}$ and $c_{2}$ being hyper parameters set to $c_{1} = 1.25$ and $c_{2} = 19652$. $Q(s,a)$ is the state action value function predicted by our network, and $P(s,a)$ is some policy also predicted by our network.
