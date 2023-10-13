@@ -1,7 +1,6 @@
 ---
 category: "post"
 ---
-# MuZero
 In recent months, rumors of a new multimodal LLM from Google DeepMind called Gemini have been circulating. According to an interview in Wired, the head of DeepMind said this new LLM will use some of the fundamental "techniques used in AlphaGo, aiming to give the system new capabilities such as planning or the ability to solve problems." But what is AlphaGo? What does it actually do? In this post I want to go into detail on the different iterations of the algorithm, with particular emphasis on a more general version, [MuZero](https://www.deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules).
 
 In 2017, DeepMind garnered significant attention in the artificial intelligence community when its algorithm, AlphaGo, defeated the world champion in Go, Ke Jie. This achievement was especially notable as the intricacies of Go had long made such a feat seem nearly insurmountable. In the ensuing years, DeepMind refined its initial design, incorporating self-play learning, expanding its proficiency to Chess and Shogi, and mastering visually intricate Atari games. The most recent iteration, MuZero, transcends previous constraints by eliminating the need for known models, empowering it to operate in environments with unknown transition dynamics (such as Atari).
